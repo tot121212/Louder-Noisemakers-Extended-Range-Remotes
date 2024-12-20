@@ -1,0 +1,395 @@
+module Base
+{
+
+	/************************ LOUDER Watches ************************/
+
+	recipe Make Classic Wrist Watch with Black Strap Louder
+	{
+		WristWatch_Right_ClassicBlack,
+		Result:WristWatch_Right_ClassicBlack_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Classic Wrist Watch with Black Strap Louder
+	{
+		WristWatch_Left_ClassicBlack,
+		Result:WristWatch_Left_ClassicBlack_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Classic Wrist Watch with Brown Strap Louder
+	{
+		WristWatch_Right_ClassicBrown,
+		Result:WristWatch_Right_ClassicBrown_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Classic Wrist Watch with Brown Strap Louder
+	{
+		WristWatch_Left_ClassicBrown,
+		Result:WristWatch_Left_ClassicBrown_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,		
+	}
+	recipe Make Standard Military Issue Wrist Watch Louder
+	{
+		WristWatch_Right_ClassicMilitary,
+		Result:WristWatch_Right_ClassicMilitary_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Standard Military Issue Wrist Watch Louder
+	{
+		WristWatch_Left_ClassicMilitary,
+		Result:WristWatch_Left_ClassicMilitary_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Gold Wrist Watch Louder
+	{
+		WristWatch_Right_ClassicGold,
+		Result:WristWatch_Right_ClassicGold_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Gold Wrist Watch Louder
+	{
+		WristWatch_Left_ClassicGold,
+		Result:WristWatch_Left_ClassicGold_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Black Digital Watch Louder
+	{
+		WristWatch_Right_DigitalBlack,
+		Result:WristWatch_Right_DigitalBlack_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Black Digital Watch Louder
+	{
+		WristWatch_Left_DigitalBlack,
+		Result:WristWatch_Left_DigitalBlack_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Red Digital Watch Louder
+	{
+		WristWatch_Right_DigitalRed,
+		Result:WristWatch_Right_DigitalRed_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Red Digital Watch Louder
+	{
+		WristWatch_Left_DigitalRed,
+		Result:WristWatch_Left_DigitalRed_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Metallic Dress Style Digital Watch Louder
+	{
+		WristWatch_Right_DigitalDress,
+		Result:WristWatch_Right_DigitalDress_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Make Metallic Dress Style Digital Watch Louder
+	{
+		WristWatch_Left_DigitalDress,
+		Result:WristWatch_Left_DigitalDress_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	
+	/************************ Revert LOUDER Watches ************************/
+
+	recipe Revert LOUDER Classic Wrist Watch with Black Strap
+	{
+		WristWatch_Right_ClassicBlack_LOUDER_Tot,
+		Result:WristWatch_Right_ClassicBlack,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Classic Wrist Watch with Black Strap
+	{
+		WristWatch_Left_ClassicBlack_LOUDER_Tot,
+		Result:WristWatch_Left_ClassicBlack,
+		SkillRequired:Electricity=1,
+		Time:5	,
+	}
+	recipe Revert LOUDER Classic Wrist Watch with Brown Strap
+	{
+		WristWatch_Right_ClassicBrown_LOUDER_Tot,
+		Result:WristWatch_Right_ClassicBrown,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Classic Wrist Watch with Brown Strap
+	{
+		WristWatch_Left_ClassicBrown_LOUDER_Tot,
+		Result:WristWatch_Left_ClassicBrown,
+		SkillRequired:Electricity=1,
+		Time:5,		
+	}
+	recipe Revert LOUDER Standard Military Issue Wrist Watch
+	{
+		WristWatch_Right_ClassicMilitary_LOUDER_Tot,
+		Result:WristWatch_Right_ClassicMilitary,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Standard Military Issue Wrist Watch
+	{
+		WristWatch_Left_ClassicMilitary_LOUDER_Tot,
+		Result:WristWatch_Left_ClassicMilitary,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Gold Wrist Watch
+	{
+		WristWatch_Right_ClassicGold_LOUDER_Tot,
+		Result:WristWatch_Right_ClassicGold,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Gold Wrist Watch
+	{
+		WristWatch_Left_ClassicGold_LOUDER_Tot,
+		Result:WristWatch_Left_ClassicGold,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Black Digital Watch
+	{
+		WristWatch_Right_DigitalBlack_LOUDER_Tot,
+		Result:WristWatch_Right_DigitalBlack,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Black Digital Watch
+	{
+		WristWatch_Left_DigitalBlack_LOUDER_Tot,
+		Result:WristWatch_Left_DigitalBlack,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Red Digital Watch
+	{
+		WristWatch_Right_DigitalRed_LOUDER_Tot,
+		Result:WristWatch_Right_DigitalRed,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Red Digital Watch
+	{
+		WristWatch_Left_DigitalRed_LOUDER_Tot,
+		Result:WristWatch_Left_DigitalRed,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Red Digital Watch
+	{
+		WristWatch_Right_DigitalDress_LOUDER_Tot,
+		Result:WristWatch_Right_DigitalDress,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	recipe Revert LOUDER Red Digital Watch
+	{
+		WristWatch_Left_DigitalDress_LOUDER_Tot,
+		Result:WristWatch_Left_DigitalDress,
+		SkillRequired:Electricity=1,
+		Time:5,
+	}
+	
+	/************************ LOUDER Alarm Clocks ************************/
+	
+	recipe Make Alarm Clock Louder
+    {
+		AlarmClock2,
+		Result:AlarmClock2_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+	
+	
+	/************************ Revert LOUDER Alarm Clocks ************************/
+	
+	recipe Revert Alarm Clock
+    {
+		AlarmClock2_LOUDER_Tot,
+		Result:AlarmClock2,
+		SkillRequired:Electricity=1,
+		Time:5,
+    }
+	
+	/************************ LOUDER Noisemakers ************************/
+	
+    recipe Make Noise Maker Louder
+    {
+		NoiseTrap,
+		Result:NoiseTrap_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+
+    recipe Make Noise Generator with Timer Louder
+    {
+		NoiseTrapTriggered,
+		Result:NoiseTrapTriggered_LOUDER_Tot,
+		SkillRequired:Electricity=1,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+
+    recipe Make Noise Generator with Sensor V1 Louder
+    {
+		NoiseTrapSensorV1,
+		Result:NoiseTrapSensorV1_LOUDER_Tot,
+		SkillRequired:Electricity=2,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+
+    recipe Make Noise Generator with Sensor V2 Louder
+    {
+		NoiseTrapSensorV2,
+		Result:NoiseTrapSensorV2_LOUDER_Tot,
+		SkillRequired:Electricity=4,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+
+    recipe Make Noise Generator with Sensor V3 Louder
+    {
+		NoiseTrapSensorV3,
+		Result:NoiseTrapSensorV3_LOUDER_Tot,
+		SkillRequired:Electricity=6,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+
+    recipe Make Remote Noise Generator Louder
+    {
+		NoiseTrapRemote,
+		Result:NoiseTrapRemote_LOUDER_Tot,
+		SkillRequired:Electricity=2,
+		NeedToBeLearn:true,
+		Time:5,
+    }
+	
+	/************************ Revert LOUDER Noisemakers ************************/
+	
+    recipe Revert LOUDER Noise Maker
+    {
+		NoiseTrap_LOUDER_Tot,
+		Result:NoiseTrap,
+		SkillRequired:Electricity=1,
+		Time:5,
+    }
+
+    recipe Revert LOUDER Noise Generator with Timer
+    {
+		NoiseTrapTriggered_LOUDER_Tot,
+		Result:NoiseTrapTriggered,
+		SkillRequired:Electricity=1,
+		Time:5,
+    }
+
+    recipe Revert LOUDER Noise Generator with Sensor
+    {
+		NoiseTrapSensorV1_LOUDER_Tot,
+		Result:NoiseTrapSensorV1,
+		SkillRequired:Electricity=2,
+		Time:5,
+    }
+
+    recipe Revert LOUDER Noise Generator with Sensor
+    {
+		NoiseTrapSensorV2_LOUDER_Tot,
+		Result:NoiseTrapSensorV2,
+		SkillRequired:Electricity=4,
+		Time:5,
+    }
+
+    recipe Revert LOUDER Noise Generator with Sensor
+    {
+		NoiseTrapSensorV3_LOUDER_Tot,
+		Result:NoiseTrapSensorV3,
+		SkillRequired:Electricity=6,
+		Time:5,
+    }
+
+    recipe Revert LOUDER Remote Noise Generator
+    {
+		NoiseTrapRemote_LOUDER_Tot,
+		Result:NoiseTrapRemote,
+		SkillRequired:Electricity=2,
+		Time:5,
+    }
+	
+	/************************ 4X Range Remotes ************************/
+	
+	 recipe Make 4X Range V1 Remote Controller
+    {
+		RemoteCraftedV1,
+		Result:RemoteCraftedV1_LOUDER_Tot,
+		SkillRequired:Electricity=2,
+		NeedToBeLearn:true,
+		Time:5,
+	
+    }
+
+    recipe Make 4X Range V2 Remote Controller
+    {
+		RemoteCraftedV2,
+		Result:RemoteCraftedV2_LOUDER_Tot,
+		SkillRequired:Electricity=4,
+		NeedToBeLearn:true,
+		Time:5,
+	
+    }
+
+    recipe Make 4X Range V3 Remote Controller
+    {
+		RemoteCraftedV3,
+		Result:RemoteCraftedV3_LOUDER_Tot,
+		SkillRequired:Electricity=6,
+		NeedToBeLearn:true,
+		Time:5,
+	
+    }
+	
+	/************************ Revert 4X Range Remotes ************************/
+	
+	recipe Revert 4X Range V1 Remote Controller
+    {
+		RemoteCraftedV1_LOUDER_Tot,
+		Result:RemoteCraftedV1,
+		SkillRequired:Electricity=2,
+		Time:5,
+	
+    }
+
+    recipe Revert 4X Range V3 Remote Controller
+    {
+		RemoteCraftedV2_LOUDER_Tot,
+		Result:RemoteCraftedV2,
+		SkillRequired:Electricity=4,
+		Time:5,
+	
+    }
+
+    recipe Revert 4X Range V3 Remote Controller
+    {
+		RemoteCraftedV3_LOUDER_Tot,
+		Result:RemoteCraftedV3,
+		SkillRequired:Electricity=6,
+		Time:5,
+	
+    }
+	
+}

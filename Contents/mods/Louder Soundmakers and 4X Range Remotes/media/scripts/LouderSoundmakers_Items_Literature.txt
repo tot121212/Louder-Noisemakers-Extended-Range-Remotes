@@ -1,0 +1,27 @@
+module Base
+{
+	item 4X_Range_Remotes_Mag_LOUDER_Tot
+		{
+			DisplayCategory = SkillBook,
+			Weight	=	0.1,
+			Type	=	Literature,
+			DisplayName	=	Crank It Up: TV Remote Modding Guide,
+			Icon	=	MagazineElectronics01,
+			TeachedRecipes  =   Make 4X Range V1 Remote Controller;Make 4X Range V2 Remote Controller;Make 4X Range V3 Remote Controller,
+			ReplaceOnUse    =   4X_Range_Remotes_LOUDER_Tot,
+			StaticModel = Magazine,
+			WorldStaticModel = MagazineElec1Ground,
+		}
+	item NoiseTrap_Mag_LOUDER_Tot
+		{
+			DisplayCategory = SkillBook,
+			Weight	=	0.1,
+			Type	=	Literature,
+			DisplayName	=	Make Some Noise~!: Mod Your Stereo,
+			Icon	=	MagazineElectronics03,
+			TeachedRecipes  =   Make Alarm Clock Louder;Make Noise Maker Louder;Make Noise Generator with Timer Louder;Make Noise Generator with Sensor V1 Louder;Make Noise Generator with Sensor V2 Louder;Make Noise Generator with Sensor V3 Louder;Make Remote Noise Generator Louder,
+			ReplaceOnUse    =   NoiseTrap_Mag_LOUDER_Tot,
+			StaticModel = Magazine,
+			WorldStaticModel = MagazineElec3Ground,
+		}
+}
