@@ -1,4 +1,4 @@
-version=1
+version=1.1
 title=Louder Soundmakers and 4X Range Remotes
 description=This mod adds louder versions of Wrist Watches, Digital Watches, Alarm Clocks, and Sound Makers.
 Also, this mod adds Remotes that have Quadruple the range.
@@ -21,5 +21,5 @@ Ranges:[list]
 [*]4X Range V3 Remote Controller - 60 tiles
 [list]
 
-Workshop ID: 2909916834 
+Workshop ID: 2909916834
 Mod ID: LSMRR
