@@ -1,11 +1,10 @@
--- require 'Items/ProceduralDistributions'
--- require 'Items/SuburbsDistributions'
--- require 'Items/Distributions'
+require 'Items/ProceduralDistributions'
 
-local default_table = "ProceduralDistributions";
+local default_table = ProceduralDistributions;
 
+--- The pass by ref data for default literature chance
 local default_literature_chances = {
-    --- ["DistributionName"] = DistributionChance
+--- ["DistributionName"] = ItemDistributionChance
     ["BookstoreMisc"]               = 2,
     ["CrateMagazines"]              = 2,
     ["ElectronicStoreMagazines"]    = 8,
@@ -32,9 +31,9 @@ local literature_module_name = "LouderSoundmakers_Items_Literature";
 --- Should make a seperate list with the distributions but... :D
 local function iterate_items_into_table(items, module_name, _table)
     for item_name, _ in pairs(items) do
-        for distribution, chance_for_distribution in pairs(items[item_name]) do
-            table.insert(_table.list[distribution].items, module_name .. item_name);
-            table.insert(_table.list[distribution].items, chance_for_distribution);
+        for distribution, chance_for_item in pairs(items[item_name]) do
+            table.insert(_table["list"][distribution].items, module_name .. item_name);
+            table.insert(_table["list"][distribution].items, chance_for_item);
         end
     end
 end
