@@ -1,0 +1,31 @@
+module LSMRR_Items_Literature {
+    imports {
+        Base
+    }
+
+    item LSMRR_Extended_Range_Remote_Mag {
+        DisplayCategory  = SkillBook,
+        Weight           = 0.5,
+        Type             = Literature,
+        DisplayName      = Crank It Up: TV Remote Modding Guide,
+        Icon             = MagazineElectronics01,
+        BoredomChange    = -10,
+        StressChange     = -15,
+        TeachedRecipes   = Make Extended Range Remote Controller;
+        StaticModel      = Magazine,
+        WorldStaticModel = MagazineElec1Ground,
+    }
+
+    item LSMRR_NoiseMaker_Mag {
+        DisplayCategory  = SkillBook,
+        Weight           = 0.5,
+        Type             = Literature,
+        DisplayName      = Make Some Noise~!: Mod Your Stereo,
+        Icon             = MagazineElectronics03,
+        BoredomChange    = -10,
+        StressChange     = -15,
+        TeachedRecipes   = Make Alarm Clock Louder;Make Noise Maker Louder;
+        StaticModel      = Magazine,
+        WorldStaticModel = MagazineElec3Ground,
+    }
+}

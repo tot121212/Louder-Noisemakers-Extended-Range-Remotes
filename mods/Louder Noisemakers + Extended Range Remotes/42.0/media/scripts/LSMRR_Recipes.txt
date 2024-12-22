@@ -1,0 +1,68 @@
+module LSMRR_Recipes {
+    imports {
+        Base
+    }
+    
+    craftRecipe Make Digital Watch Louder
+    {
+        timedAction   = MakingElectrical,
+        Time          = 5,
+        Tags          = InHandCraft,
+        category      = Electrical,
+        AutoLearn     = Electricity:1,
+        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        inputs 
+        {
+            item 1 [Base.WristWatch_Right_DigitalBlack;Base.WristWatch_Left_DigitalBlack;Base.WristWatch_Right_DigitalRed;Base.WristWatch_Left_DigitalRed;WristWatch_Right_DigitalDress;WristWatch_Left_DigitalDress] mode:keep flags[Prop2],
+            item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+    }
+
+    craftRecipe Make Alarm Clock Louder
+    {
+        timedAction   = MakingElectrical,
+        Time          = 20,
+        Tags          = InHandCraft,
+        category      = Electrical,
+        AutoLearn     = Electricity:1,
+        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        inputs { 
+            item 1 [Base.AlarmClock2] mode:keep flags[Prop2],
+            item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+    }
+
+    craftRecipe Make Noise Maker Louder
+    {
+        timedAction   = MakingElectrical,
+        Time          = 50,
+        Tags          = AnySurfaceCraft,
+        category      = Electrical,
+        SkillRequired = Electricity:2,
+        AutoLearn     = Electricity:6,
+        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        inputs 
+        {
+            item 1 [NoiseTrap;NoiseTrapRemote;NoiseTrapSensorV1;NoiseTrapSensorV2;NoiseTrapSensorV3;NoiseTrapTriggered;] mode:keep flags[Prop2],
+            item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+    }
+
+    craftRecipe Make Extended Range Remote Controller
+    {
+        timedAction   = MakingElectrical,
+        Time          = 100,
+        NeedToBeLearn = True,
+        SkillRequired = Electricity:2,
+        Tags          = AnySurfaceCraft,
+        category      = Electrical,
+        AutoLearn     = Electricity:6,
+        xpAward       = Electricity:10,
+        OnCreate      = "Recipe.OnCreate.LSMRR_MakeRangeHigher",
+        inputs 
+        {
+            item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3;] mode:keep flags[Prop2],
+            item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+    }
+}
