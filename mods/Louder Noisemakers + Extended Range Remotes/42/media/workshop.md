@@ -1,5 +1,5 @@
 ##version=1.1
-#title=Louder Digital Watches, Alarm Clocks, Noisemakers, and Extended Range Remote Controllers
+#title=Louder Noisemakers + Extended Range Remotes
 ##description=This mod adds louder versions of Digital Watches, Alarm Clocks, Noisemakers, and Extends the range of Remote Controllers.
 
 I learned to program, so let's update this mod for B42 Unstable!
