@@ -2,8 +2,8 @@ module LSMRR_Recipes {
     imports {
         Base
     }
-    
-    craftRecipe Make_Digital Watch Louder
+
+    craftRecipe Make Digital Watch Louder
     {
         timedAction   = MakingElectrical,
         Time          = 5,
