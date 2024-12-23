@@ -1,9 +1,12 @@
-module LSMRR_Items_Literature {
-    imports {
+module LSMRR_Items_Literature 
+{
+    imports 
+    {
         Base
     }
 
-    item LSMRR_Extended_Range_Remote_Mag {
+    item LSMRR_Extended_Range_Remote_Mag 
+    {
         DisplayCategory  = SkillBook,
         Weight           = 0.5,
         Type             = Literature,
@@ -16,7 +19,8 @@ module LSMRR_Items_Literature {
         WorldStaticModel = MagazineElec1Ground,
     }
 
-    item LSMRR_NoiseMaker_Mag {
+    item LSMRR_NoiseMaker_Mag 
+    {
         DisplayCategory  = SkillBook,
         Weight           = 0.5,
         Type             = Literature,
