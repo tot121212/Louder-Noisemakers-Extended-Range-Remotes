@@ -43,7 +43,7 @@ local literature_module_name = "LSMRR_Items_Literature";
 local function iterate_items_into_table(items, module_name, _table)
     for item_name, _ in pairs(items) do
         for distribution, chance_for_item in pairs(items[item_name]) do
-            table.insert(_table["list"][distribution].items, module_name .. item_name);
+            table.insert(_table["list"][distribution].items, module_name .. "." .. item_name);
             table.insert(_table["list"][distribution].items, chance_for_item);
         end
     end
