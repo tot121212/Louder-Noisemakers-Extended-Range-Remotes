@@ -48,11 +48,11 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     end
 
     --- Check if item is already modified before anything
-    local modData = inventoryItem:getModData();
-    if modData.LSMRR_isLouder or modData.LSMRR_hasExtendedRange then
-        print("Recipe.OnCreate.LSMRR_MakeLouder: item is already modified");
-        return;
-    end
+    -- local modData = inventoryItem:getModData();
+    -- if modData.LSMRR_isLouder or modData.LSMRR_hasExtendedRange then
+    --     print("Recipe.OnCreate.LSMRR_MakeLouder: item is already modified");
+    --     return;
+    -- end
 
     local itemName = inventoryItem:getName();
     print("Recipe.OnCreate.LSMRR_MakeLouder itemName: " .. itemName);
@@ -66,10 +66,14 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     --- check if item is valud and modify accordingly
     if itemCustomType == "radius" or itemCustomType == "noise" then
         modData.LSMRR_isLouder = true;
-        newItemName = itemName .. " " .. louderStr;
+        if not string.find(itemName, louderStr) then
+            newItemName = itemName .. " " .. louderStr;
+        end
     elseif itemCustomType == "remote" then
         modData.LSMRR_hasExtendedRange = true;
-        newItemName =  erStr .. " " .. itemName;
+        if not string.find(itemName, erStr) then
+            newItemName =  erStr .. " " .. itemName;
+        end
     else
         print("LSMRR Recipe.OnCreate: itemCustomType is not valid");
         return;
@@ -82,8 +86,8 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     end
     inventoryItem:setName(newItemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getName(): " .. inventoryItem:getName());
-    ---inventoryItem:setDisplayName(newItemName);
-    ---print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
+    inventoryItem:setDisplayName(newItemName);
+    print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
 end
 
 ---if item is being crafted, and item is related to this mod
