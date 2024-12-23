@@ -9,9 +9,10 @@ module LSMRR_Recipes {
         Time          = 5,
         Tags          = InHandCraft,
         category      = Electrical,
-        AutoLearn     = Electricity:1,
+        SkillRequired = Electricity:1,
+        AutoLearn     = Electricity:2,
         OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
-        inputs 
+        inputs
         {
             item 1 [Base.WristWatch_Right_DigitalBlack;Base.WristWatch_Left_DigitalBlack;Base.WristWatch_Right_DigitalRed;Base.WristWatch_Left_DigitalRed;WristWatch_Right_DigitalDress;WristWatch_Left_DigitalDress] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
@@ -24,10 +25,11 @@ module LSMRR_Recipes {
     craftRecipe Make Alarm Clock Louder
     {
         timedAction   = MakingElectrical,
-        Time          = 20,
+        Time          = 10,
         Tags          = InHandCraft,
         category      = Electrical,
-        AutoLearn     = Electricity:1,
+        SkillRequired = Electricity:2,
+        AutoLearn     = Electricity:3,
         OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
         inputs
         {
@@ -42,13 +44,14 @@ module LSMRR_Recipes {
     craftRecipe Make Noise Maker Louder
     {
         timedAction   = MakingElectrical,
-        Time          = 50,
+        Time          = 25,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
+        NeedToBeLearn = True,
         SkillRequired = Electricity:2,
-        AutoLearn     = Electricity:6,
+        AutoLearn     = Electricity:4,
         OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
-        inputs 
+        inputs
         {
             item 1 [Base.NoiseTrap;Base.NoiseTrapRemote;Base.NoiseTrapSensorV1;Base.NoiseTrapSensorV2;Base.NoiseTrapSensorV3;Base.NoiseTrapTriggered] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
@@ -62,14 +65,13 @@ module LSMRR_Recipes {
     {
         timedAction   = MakingElectrical,
         Time          = 100,
-        NeedToBeLearn = True,
-        SkillRequired = Electricity:2,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
-        AutoLearn     = Electricity:6,
-        xpAward       = Electricity:10,
+        NeedToBeLearn = True,
+        SkillRequired = Electricity:3,
+        AutoLearn     = Electricity:5,
         OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
-        inputs 
+        inputs
         {
             item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
