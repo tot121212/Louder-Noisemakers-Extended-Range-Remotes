@@ -50,7 +50,7 @@ module LSMRR_Recipes {
         OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
-            item 1 [NoiseTrap;NoiseTrapRemote;NoiseTrapSensorV1;NoiseTrapSensorV2;NoiseTrapSensorV3;NoiseTrapTriggered] mode:keep flags[Prop2],
+            item 1 [Base.NoiseTrap;Base.NoiseTrapRemote;Base.NoiseTrapSensorV1;Base.NoiseTrapSensorV2;Base.NoiseTrapSensorV3;Base.NoiseTrapTriggered] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
         }
         outputs

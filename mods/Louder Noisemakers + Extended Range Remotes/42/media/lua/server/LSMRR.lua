@@ -36,7 +36,8 @@ local Recipe = Recipe;
 local louderStr = "(Louder)";
 local erStr = "Extended Range";
 
-function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, character)
+function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
+    
     local inputItems = craftRecipeData:getAllInputItems();
     print("Recipe.OnCreate.LSMRR_MakeLouder inputItems: " .. tostring(inputItems));
 
@@ -46,21 +47,28 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, character)
         return;
     end
 
+    --- Check if item is already modified before anything
+    local modData = inventoryItem:getModData();
+    if modData.LSMRR_isLouder or modData.LSMRR_hasExtendedRange then
+        print("Recipe.OnCreate.LSMRR_MakeLouder: item is already modified");
+        return;
+    end
+
     local itemName = inventoryItem:getName();
     print("Recipe.OnCreate.LSMRR_MakeLouder itemName: " .. itemName);
     local itemCustomType = MakeLouder(inventoryItem, itemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder itemCustomType: " .. itemCustomType);
 
-    local modData = inventoryItem:getModData();
+   
     print("Recipe.OnCreate.LSMRR_MakeLouder modData: " .. tostring(modData));
     local newItemName = "";
     
     --- check if item is valud and modify accordingly
     if itemCustomType == "radius" or itemCustomType == "noise" then
-        modData:rawset("LSMRR_shouldBeLouder", true);
+        modData.LSMRR_isLouder = true;
         newItemName = itemName .. " " .. louderStr;
     elseif itemCustomType == "remote" then
-        modData:rawset("LSMRR_shouldHaveExtendedRange", true);
+        modData.LSMRR_hasExtendedRange = true;
         newItemName =  erStr .. " " .. itemName;
     else
         print("LSMRR Recipe.OnCreate: itemCustomType is not valid");
@@ -74,8 +82,8 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, character)
     end
     inventoryItem:setName(newItemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getName(): " .. inventoryItem:getName());
-    inventoryItem:setDisplayName(newItemName);
-    print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
+    ---inventoryItem:setDisplayName(newItemName);
+    ---print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
 end
 
 ---if item is being crafted, and item is related to this mod
