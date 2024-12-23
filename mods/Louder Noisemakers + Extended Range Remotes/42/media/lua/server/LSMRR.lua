@@ -48,7 +48,7 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     end
 
     --- Check if item is already modified before anything
-    -- local modData = inventoryItem:getModData();
+    local modData = inventoryItem:getModData();
     -- if modData.LSMRR_isLouder or modData.LSMRR_hasExtendedRange then
     --     print("Recipe.OnCreate.LSMRR_MakeLouder: item is already modified");
     --     return;
@@ -59,6 +59,8 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     local itemCustomType = MakeLouder(inventoryItem, itemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder itemCustomType: " .. itemCustomType);
 
+   
+    print("Recipe.OnCreate.LSMRR_MakeLouder modData: " .. tostring(modData));
     local newItemName = "";
     
     --- check if item is valud and modify accordingly
