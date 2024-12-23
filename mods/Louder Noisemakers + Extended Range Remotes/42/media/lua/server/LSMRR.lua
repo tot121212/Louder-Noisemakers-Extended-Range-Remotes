@@ -86,8 +86,8 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     end
     inventoryItem:setName(newItemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getName(): " .. inventoryItem:getName());
-    inventoryItem:setDisplayName(newItemName);
-    print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
+    ---inventoryItem:setDisplayName(newItemName);
+    ---print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
 end
 
 ---if item is being crafted, and item is related to this mod
