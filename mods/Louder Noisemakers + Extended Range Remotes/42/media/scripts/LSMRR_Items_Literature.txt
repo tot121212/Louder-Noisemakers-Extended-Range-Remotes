@@ -11,7 +11,7 @@ module LSMRR_Items_Literature {
         Icon             = MagazineElectronics01,
         BoredomChange    = -10,
         StressChange     = -15,
-        TeachedRecipes   = Make Extended Range Remote Controller;
+        TeachedRecipes   = Make Extended Range Remote Controller,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec1Ground,
     }
@@ -24,7 +24,7 @@ module LSMRR_Items_Literature {
         Icon             = MagazineElectronics03,
         BoredomChange    = -10,
         StressChange     = -15,
-        TeachedRecipes   = Make Alarm Clock Louder;Make Noise Maker Louder;
+        TeachedRecipes   = Make Alarm Clock Louder;Make Noise Maker Louder,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec3Ground,
     }

@@ -3,18 +3,21 @@ module LSMRR_Recipes {
         Base
     }
     
-    craftRecipe Make Digital Watch Louder
+    craftRecipe Make_Digital Watch Louder
     {
         timedAction   = MakingElectrical,
         Time          = 5,
         Tags          = InHandCraft,
         category      = Electrical,
         AutoLearn     = Electricity:1,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
             item 1 [Base.WristWatch_Right_DigitalBlack;Base.WristWatch_Left_DigitalBlack;Base.WristWatch_Right_DigitalRed;Base.WristWatch_Left_DigitalRed;WristWatch_Right_DigitalDress;WristWatch_Left_DigitalDress] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+        outputs
+        {
         }
     }
 
@@ -25,10 +28,14 @@ module LSMRR_Recipes {
         Tags          = InHandCraft,
         category      = Electrical,
         AutoLearn     = Electricity:1,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
-        inputs { 
+        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
+        inputs
+        {
             item 1 [Base.AlarmClock2] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+        outputs
+        {
         }
     }
 
@@ -40,11 +47,14 @@ module LSMRR_Recipes {
         category      = Electrical,
         SkillRequired = Electricity:2,
         AutoLearn     = Electricity:6,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
-            item 1 [NoiseTrap;NoiseTrapRemote;NoiseTrapSensorV1;NoiseTrapSensorV2;NoiseTrapSensorV3;NoiseTrapTriggered;] mode:keep flags[Prop2],
+            item 1 [NoiseTrap;NoiseTrapRemote;NoiseTrapSensorV1;NoiseTrapSensorV2;NoiseTrapSensorV3;NoiseTrapTriggered] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+        outputs
+        {
         }
     }
 
@@ -58,11 +68,14 @@ module LSMRR_Recipes {
         category      = Electrical,
         AutoLearn     = Electricity:6,
         xpAward       = Electricity:10,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeRangeHigher",
+        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
-            item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3;] mode:keep flags[Prop2],
+            item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+        outputs
+        {
         }
     }
 }
