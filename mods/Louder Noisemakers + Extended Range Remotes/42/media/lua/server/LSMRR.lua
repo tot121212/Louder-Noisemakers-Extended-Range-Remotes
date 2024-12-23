@@ -9,23 +9,23 @@ local Recipe = Recipe;
 
 function MakeLouder(item, scriptItemName)
     if string.find(scriptItemName, "Watch") and string.find(scriptItemName, "Digital") then
-        item:setSoundRadius(25);
+        item:setSoundRadius(20);
         return "radius";
     elseif string.find(scriptItemName, "AlarmClock2") then
-        item:setSoundRadius(50);
+        item:setSoundRadius(40);
         return "radius";
     elseif string.find(scriptItemName, "NoiseTrap") then
-        item:setNoiseRange(150);
+        item:setNoiseRange(160);
         return "noise";
     elseif string.find(scriptItemName, "RemoteCrafted") then
         if string.find(scriptItemName, "V1") then
-            item:setRemoteRange(50);
+            item:setRemoteRange(20);
             return "remote";
         elseif string.find(scriptItemName, "V2") then
-            item:setRemoteRange(75);
+            item:setRemoteRange(40);
             return "remote";
         elseif string.find(scriptItemName, "V3") then
-            item:setRemoteRange(100);
+            item:setRemoteRange(160);
             return "remote";
         end
     end
