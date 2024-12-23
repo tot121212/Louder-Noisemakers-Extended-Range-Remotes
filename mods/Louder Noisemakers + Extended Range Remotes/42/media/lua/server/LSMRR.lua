@@ -59,8 +59,6 @@ function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
     local itemCustomType = MakeLouder(inventoryItem, itemName);
     print("Recipe.OnCreate.LSMRR_MakeLouder itemCustomType: " .. itemCustomType);
 
-   
-    print("Recipe.OnCreate.LSMRR_MakeLouder modData: " .. tostring(modData));
     local newItemName = "";
     
     --- check if item is valud and modify accordingly
