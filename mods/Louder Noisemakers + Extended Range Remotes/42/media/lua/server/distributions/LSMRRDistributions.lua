@@ -5,19 +5,30 @@ local default_table = ProceduralDistributions;
 --- The pass by ref data for default literature chance
 local default_literature_chances = {
 --- ["DistributionName"] = ItemDistributionChance
+    ["ArmyStorageElectronics"]      = 1,
     ["BookstoreMisc"]               = 2,
-    ["CrateMagazines"]              = 2,
+    ["CrateMagazines"]              = 1,
     ["ElectronicStoreMagazines"]    = 8,
     ["EngineerTools"]               = 2,
-    ["LibraryBooks"]                = 1,
+    ["ElectricianOutfit"]           = 2,
+    ["ElectricianTools"]            = 2,
+    ["LibraryMagazines"]            = 1,
     ["LivingRoomShelf"]             = 0.1,
-    ["LivingRoomShelfNoTapes"]      = 0.1,
+    ["LivingRoomShelfClassy"]       = 0.1,
+    ["LivingRoomShelfRedneck"]      = 0.1,
     ["LivingRoomSideTable"]         = 0.1,
-    ["LivingRoomSideTableNoRemote"] = 0.1,
+    ["LivingRoomSideTableClassy"]   = 0.1,
+    ["LivingRoomSideTableRedneck"]  = 0.1,
+    ["LivingRoomWardrobe"]          = 0.1,
     ["MagazineRackMixed"]           = 1,
     ["PostOfficeMagazines"]         = 1,
+    ["RecRoomShelf"]                = 0.1,
+    ["SafehouseBookShelf"]          = 0.5,
+    ["SafehouseFireplace"]          = 0.1,
+    ["SafehouseFireplace_Late"]     = 0.1,
     ["ShelfGeneric"]                = 0.1,
-    ["ToolStoreBooks"]              = 2
+    ["ToolStoreBooks"]              = 2,
+    ["UniversityLibraryMagazines"]  = 1,
 }
 
 local literature_names_with_chances = {
