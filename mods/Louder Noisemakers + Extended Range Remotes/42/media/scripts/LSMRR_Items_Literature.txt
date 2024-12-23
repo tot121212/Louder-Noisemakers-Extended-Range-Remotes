@@ -17,6 +17,7 @@ module LSMRR_Items_Literature
         TeachedRecipes   = Make Extended Range Remote Controller,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec1Ground,
+        Tags = Magazine,
     }
 
     item LSMRR_NoiseMaker_Mag 
@@ -31,5 +32,6 @@ module LSMRR_Items_Literature
         TeachedRecipes   = Make Alarm Clock Louder;Make Noise Maker Louder,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec3Ground,
+        Tags = Magazine,
     }
 }
