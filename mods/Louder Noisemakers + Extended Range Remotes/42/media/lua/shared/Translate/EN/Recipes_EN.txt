@@ -1,4 +1,4 @@
-Recipes_EN = {
+RecipesEN {
     LSMRR_BoostWatchVolume = "Boost Watch Volume",
     LSMRR_AdjustGearsOnAlarmClock = "Adjust Alarm Clock Gears",
     LSMRR_ModulateNoiseMakerVolume = "Modulate Noise Maker Volume",
