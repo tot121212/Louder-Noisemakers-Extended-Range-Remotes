@@ -5,7 +5,7 @@ module LSMRR_Recipes
         Base
     }
 
-    craftRecipe LSMRR_BoostWatchVolume
+    craftRecipe Recipe_LSMRR_BoostWatchVolume
     {
         timedAction   = MakingElectrical,
         Time          = 10,
@@ -24,7 +24,7 @@ module LSMRR_Recipes
         }
     }
 
-    craftRecipe LSMRR_AdjustGearsOnAlarmClock
+    craftRecipe Recipe_LSMRR_AdjustGearsOnAlarmClock
     {
         timedAction   = MakingElectrical,
         Time          = 10,
@@ -44,7 +44,7 @@ module LSMRR_Recipes
         }
     }
 
-    craftRecipe LSMRR_ModulateNoiseMakerVolume
+    craftRecipe Recipe_LSMRR_ModulateNoiseMakerVolume
     {
         timedAction   = MakingElectrical,
         Time          = 25,
@@ -64,7 +64,7 @@ module LSMRR_Recipes
         }
     }
 
-    craftRecipe LSMRR_ExtendRangeOfRemoteController
+    craftRecipe Recipe_LSMRR_ExtendRangeOfRemoteController
     {
         timedAction   = MakingElectrical,
         Time          = 100,
@@ -84,7 +84,7 @@ module LSMRR_Recipes
         }
     }
 
-    craftRecipe LSMRR_AttachAmplifierToNoiseMaker
+    craftRecipe Recipe_LSMRR_AttachAmplifierToNoiseMaker
     {
         timedAction   = MakingElectrical,
         Time          = 100,
@@ -97,6 +97,7 @@ module LSMRR_Recipes
         {
             item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
+            item 1 [Base.Amplifier]
         }
         outputs
         {

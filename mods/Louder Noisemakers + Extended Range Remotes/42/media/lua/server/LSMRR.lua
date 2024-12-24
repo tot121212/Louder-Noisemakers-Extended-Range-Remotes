@@ -9,19 +9,19 @@ LSMRR = {};
 
 --- Table for item volumes
 local RecipeRangeTable = {
-    ["LSMRR_BoostWatchVolume"] = {
+    ["Recipe_LSMRR_BoostWatchVolume"] = {
         ["default"] = 20,
     },
-    ["LSMRR_AdjustGearsOnAlarmClock"] = {
+    ["Recipe_LSMRR_AdjustGearsOnAlarmClock"] = {
         ["default"] = 40,
     },
-    ["LSMRR_ModulateNoiseMakerVolume"] = {
+    ["Recipe_LSMRR_ModulateNoiseMakerVolume"] = {
         ["default"] = 100,
     },
-    ["LSMRR_AttachAmplifierToNoiseMaker"] = {
+    ["Recipe_LSMRR_AttachAmplifierToNoiseMaker"] = {
         ["default"] = 400,
     },
-    ["LSMRR_ExtendRangeOfRemoteController"] = {
+    ["Recipe_LSMRR_ExtendRangeOfRemoteController"] = {
         ["default"] = nil,
         ["RemoteCraftedV1"] = 20,
         ["RemoteCraftedV2"] = 40,
@@ -39,7 +39,9 @@ function LSMRR.MakeLouder(inputItem, inputItemName, recipeName, soundType)
         newRangeOfItem = RecipeRangeTable[recipeName][inputItemName];
     elseif RecipeRangeTable[recipeName]["default"] then
         newRangeOfItem = RecipeRangeTable[recipeName]["default"];
-    else return nil end
+    else
+        return nil
+    end
     if soundType == "Radius" then
         inputItem:setSoundRadius(newRangeOfItem);
     elseif soundType == "Noise" then
@@ -82,7 +84,8 @@ function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
     ---if newItemName ~= nil then
     ---    inputItem:setName(newItemName);
     ---end
-    inputItem:setTooltip(getText("LSMRR_Tooltip_item_Volume") .. ": " .. tostring(newRangeOfItem));
+    local tooltip = getText("Tooltip_LSMRR_ItemVolume") .. ": " .. tostring(newRangeOfItem);
+    inputItem:setTooltip(tooltip);
     print("\tItem modified : success");
 end
 
