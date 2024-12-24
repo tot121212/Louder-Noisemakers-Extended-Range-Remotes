@@ -57,7 +57,7 @@ end
 ---@param character character
 ---@param soundType string
 function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
-    print("LSMRR_OnMakeLouder:")
+    print("LSMRR.OnMakeLouder")
     local recipe = craftRecipeData:getRecipe();
     local recipeName = recipe:getName();
     local inputItems = craftRecipeData:getAllInputItems();
@@ -68,7 +68,7 @@ function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
         print("\tItem range not valid : fail");
         return;
     else
-        print("\tItem range was modifed to:" .. tostring(newRangeOfItem));
+        print("\tItem range was modifed to: " .. tostring(newRangeOfItem));
     end
     --- local newItemName = nil;
 
