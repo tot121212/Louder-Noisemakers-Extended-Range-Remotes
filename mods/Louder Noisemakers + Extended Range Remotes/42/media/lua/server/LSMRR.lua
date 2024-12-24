@@ -5,107 +5,84 @@
 
 -- make louder and return indentifier for kind of item
 
-local Recipe = Recipe;
+LSMRR = {};
 
-function MakeLouder(item, scriptItemName)
-    if string.find(scriptItemName, "Watch") and string.find(scriptItemName, "Digital") then
-        item:setSoundRadius(20);
-        return "radius";
-    elseif string.find(scriptItemName, "AlarmClock2") then
-        item:setSoundRadius(40);
-        return "radius";
-    elseif string.find(scriptItemName, "NoiseTrap") then
-        item:setNoiseRange(160);
-        return "noise";
-    elseif string.find(scriptItemName, "RemoteCrafted") then
-        if string.find(scriptItemName, "V1") then
-            item:setRemoteRange(20);
-            return "remote";
-        elseif string.find(scriptItemName, "V2") then
-            item:setRemoteRange(40);
-            return "remote";
-        elseif string.find(scriptItemName, "V3") then
-            item:setRemoteRange(160);
-            return "remote";
-        end
+--- Table for item volumes
+local RecipeRangeTable = {
+    ["LSMRR_BoostWatchVolume"] = {
+        ["default"] = 20,
+    },
+    ["LSMRR_AdjustGearsOnAlarmClock"] = {
+        ["default"] = 40,
+    },
+    ["LSMRR_ModulateNoiseMakerVolume"] = {
+        ["default"] = 100,
+    },
+    ["LSMRR_AttachAmplifierToNoiseMaker"] = {
+        ["default"] = 400,
+    },
+    ["LSMRR_ExtendRangeOfRemoteController"] = {
+        ["default"] = nil,
+        ["RemoteCraftedV1"] = 20,
+        ["RemoteCraftedV2"] = 40,
+        ["RemoteCraftedV3"] = 100,
+    },
+}
+
+---@param inputItem Java:inventoryItem
+---@param inputItemName string
+---@param recipeName string
+---@param soundType string
+function LSMRR.MakeLouder(inputItem, inputItemName, recipeName, soundType)
+    local newRangeOfItem = nil;
+    if RecipeRangeTable[recipeName][inputItemName] then
+        newRangeOfItem = RecipeRangeTable[recipeName][inputItemName];
+    elseif RecipeRangeTable[recipeName]["default"] then
+        newRangeOfItem = RecipeRangeTable[recipeName]["default"];
+    else return nil end
+    if soundType == "Radius" then
+        inputItem:setSoundRadius(newRangeOfItem);
+    elseif soundType == "Noise" then
+        inputItem:setNoiseRange(newRangeOfItem);
+    elseif soundType == "Remote" then
+        inputItem:setRemoteRange(newRangeOfItem);
+    else
+        return nil;
     end
-    return false;
+    return newRangeOfItem;
 end
 
-local louderStr = "(Louder)";
-local erStr = "Extended Range";
-
-function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
-    
+--- Modifies item volume and tooltip
+---@param craftRecipeData Java:CraftRecipeData
+---@param character Java:Character
+---@param soundType string
+function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
+    print("LSMRR_MakeLouder:")
+    local recipe = craftRecipeData:getRecipe();
+    local recipeName = recipe:getName();
     local inputItems = craftRecipeData:getAllInputItems();
-    --print("Recipe.OnCreate.LSMRR_MakeLouder inputItems: " .. tostring(inputItems));
-
-    local inventoryItem = inputItems:get(0);
-    if inventoryItem == nil then
-        --print("Recipe.OnCreate.LSMRR_MakeLouder: inventoryItem is nil");
+    local inputItem = inputItems:get(0);
+    local inputItemName = inputItem:getName();
+    local newRangeOfItem = LSMRR.MakeLouder(inputItem, inputItemName, recipeName, soundType);
+    if newRangeOfItem == nil then
+        print("    Item range not valid : fail");
         return;
-    end
-
-    --- Check if item is already modified before anything
-    local modData = inventoryItem:getModData();
-    -- if modData.LSMRR_isLouder or modData.LSMRR_hasExtendedRange then
-    --     print("Recipe.OnCreate.LSMRR_MakeLouder: item is already modified");
-    --     return;
-    -- end
-
-    local itemName = inventoryItem:getName();
-    if itemName == nil then
-       -- print("Recipe.OnCreate.LSMRR_MakeLouder: itemName is nil");
-        return;
-    end
-    --print("Recipe.OnCreate.LSMRR_MakeLouder itemName: " .. itemName);
-    local scriptItem = inventoryItem:getScriptItem() --- script template for item
-    --print("Recipe.OnCreate.LSMRR_MakeLouder scriptItem: " .. tostring(scriptItem));
-    local scriptItemName = scriptItem:getName();
-    
-    local itemCustomType = MakeLouder(inventoryItem, scriptItemName);
-    --print("Recipe.OnCreate.LSMRR_MakeLouder itemCustomType: " .. itemCustomType);
-   
-    --print("Recipe.OnCreate.LSMRR_MakeLouder modData: " .. tostring(modData));
-    local newItemName = "";
-    
-    --- check if item is valid and modify accordingly
-    if itemCustomType == "radius" then
-        modData.LSMRR_isLouder = true;
-        if not string.find(itemName, louderStr) then
-            newItemName = itemName .. " " .. louderStr;
-        end
-        --print("Recipe.OnCreate.LSMRR_MakeLouder soundRadius: " .. tostring(inventoryItem:getSoundRadius()));
-    elseif itemCustomType == "noise" then
-        modData.LSMRR_isNoisier = true;
-        if not string.find(itemName, louderStr) then
-            newItemName = itemName .. " " .. louderStr;
-        end
-        --print("Recipe.OnCreate.LSMRR_MakeLouder noiseRange: " .. tostring(inventoryItem:getNoiseRange()));
-    elseif itemCustomType == "remote" then
-        modData.LSMRR_hasExtendedRange = true;
-        if not string.find(itemName, erStr) then
-            newItemName =  erStr .. " " .. itemName;
-        end
-        --print("Recipe.OnCreate.LSMRR_MakeLouder remoteRange: " .. tostring(inventoryItem:getRemoteRange()));
     else
-        --print("LSMRR Recipe.OnCreate: itemCustomType is not valid");
-        return;
+        print("Item range was modifed to:" .. tostring(newRangeOfItem));
     end
+    --- local newItemName = nil;
+
     --- make sure newItemName isnt an empty string
-    if newItemName == "" then
-        newItemName = itemName;
-    end
-    --print("Recipe.OnCreate.LSMRR_MakeLouder newItemName: " .. newItemName);
+    ---if newItemName == "" then
+    ---    newItemName = inputItemName;
+    ---end
 
     --- set names
-    if not inventoryItem:isCustomName() then
-        inventoryItem:setCustomName(true);
-    end
-    if newItemName ~= nil then
-        inventoryItem:setName(newItemName);
-        --print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getName(): " .. inventoryItem:getName());
-    end
-    --inventoryItem:setDisplayName(newItemName);
-    --print("Recipe.OnCreate.LSMRR_MakeLouder inventoryItem:getDisplayName(): " .. inventoryItem:getDisplayName());
+    ---inputItem:setCustomName(true);
+    ---if newItemName ~= nil then
+    ---    inputItem:setName(newItemName);
+    ---end
+    inputItem:setTooltip(getText("LSMRR_Tooltip_item_Volume") .. ": " .. tostring(newRangeOfItem));
+    print("    Item modified : success");
 end
+
