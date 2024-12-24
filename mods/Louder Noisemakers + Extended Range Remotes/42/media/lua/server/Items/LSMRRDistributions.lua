@@ -31,15 +31,30 @@ local default_literature_chances = {
     ["UniversityLibraryMagazines"]  = 1,
 }
 
+---@param input_lit_chances table
+---@param resultCallable function
+local function mod_literature_table(input_lit_chances, resultCallable)
+    local literature_table = {}
+    for item_name, chance in pairs(input_lit_chances) do
+        literature_table[item_name] = tonumber(string.format("%.2f", resultCallable(chance)))
+    end
+    return literature_table;
+end
+
 local literature_names_with_chances = {
-    ["LSMRR_Extended_Range_Remote_Mag"] = default_literature_chances,
-    ["LSMRR_NoiseMaker_Mag"] = default_literature_chances
+    ["LSMRR_ExtendedRangeRemoteMag"] = default_literature_chances,
+    ["LSMRR_ModulatedNoiseMakerMag"] = default_literature_chances,
+    ["LSMRR_AddAmplifierSchematic"] = mod_literature_table(default_literature_chances, function(a) return (a/2) end),
 }
 
 local literature_module_name = "LSMRR_Items_Literature";
 
 --- Iterate items and item_names and add to _table with module_name prepended
 --- Should make a seperate list with the distributions but... :D
+--- 
+---@param items table
+---@param module_name string
+---@param _table Java:DistributionsTable
 local function iterate_items_into_table(items, module_name, _table)
     for item_name, _ in pairs(items) do
         for distribution, chance_for_item in pairs(items[item_name]) do
