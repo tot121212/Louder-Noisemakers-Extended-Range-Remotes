@@ -1,0 +1,7 @@
+Recipes_EN = {
+    LSMRR_BoostWatchVolume = "Boost Watch Volume",
+    LSMRR_AdjustGearsOnAlarmClock = "Adjust Alarm Clock Gears",
+    LSMRR_ModulateNoiseMakerVolume = "Modulate Noise Maker Volume",
+    LSMRR_ModifyRangeOfRemoteController = "Extend Range Of Remote Controller",
+    LSMRR_AttachAmplifierToNoiseMaker = "Attach Amplifier To Noise Maker",
+}
