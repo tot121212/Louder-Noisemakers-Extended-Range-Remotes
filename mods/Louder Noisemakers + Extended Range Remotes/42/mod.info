@@ -1,4 +1,6 @@
 name=Louder Noisemakers + Extended Range Remotes
-poster=poster.png
 id=LSMRR
+poster=poster.png
+author=Totsnuk
+require=\StarlitLibrary
 description=Adds louder items and extended range remote controllers
