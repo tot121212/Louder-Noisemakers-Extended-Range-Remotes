@@ -7,8 +7,6 @@
 
 LSMRRMain = {};
 
-local InventoryUI = require("Starlit/client/ui/InventoryUI");
-
 -- External table for common data (nameModPrepend and volume values)
 local VolumeData = {
     ["Bass Boosted"] = {nameModPrepend = "Bass Boosted", volume = 20},
@@ -110,34 +108,3 @@ local modDataSoundTypes = {
     ["LSMRR_increasedNoiseRange"] = true,
     ["LSMRR_increasedRemoteRange"] = true,
 }
-
---- Adds tooltips to LSMRR_hasModifiedSoundRadius items
---- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
-local checkForModifiedRadiusItems = function(tooltip, layout, item)
-    local modData = item:getModData();
-    -- quick check
-    if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end
-
-    local layoutItem = LayoutItem.new()
-    layout.items:add(layoutItem);
-    layoutItem:setLabel(getText("Tooltip_LSMRR_ItemVolume"), 1, 1, 0.8, 1);
-    local hasValidSoundType;
-    for k, _ in ipairs(modDataSoundTypes) do
-        if modData[k] then -- it has a sound type, which means it has a custom name
-            -- set value of tooltip to modData value
-            layoutItem:setValue(modData[k]);
-            -- set names
-            item:setCustomName(true);
-            local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"];
-            if LSMRRRecipe then item:setName(LSMRRRecipe); end
-            hasValidSoundType = true;
-        end
-    end
-    if not hasValidSoundType then
-        print("\tItem did not have any valid sound type");
-    end
-end
-
-InventoryUI.onFillItemTooltip:addListener(checkForModifiedRadiusItems);
-
---- every onFillItemTooltip, check item mod data for each table string
