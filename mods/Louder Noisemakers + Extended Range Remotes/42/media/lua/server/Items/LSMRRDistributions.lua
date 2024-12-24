@@ -1,4 +1,4 @@
-require 'Items/ProceduralDistributions'
+require 'Items/ProceduralDistributions';
 
 local default_table = ProceduralDistributions;
 

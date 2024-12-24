@@ -1,4 +1,4 @@
-require 'server/LSMRR'
+require 'server/LSMRR';
 
 local LSMRR = LSMRR;
 local Recipe = Recipe;
