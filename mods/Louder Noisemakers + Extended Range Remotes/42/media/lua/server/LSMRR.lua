@@ -29,7 +29,7 @@ local RecipeRangeTable = {
     },
 }
 
----@param inputItem Java:inventoryItem
+---@param inputItem inventoryItem
 ---@param inputItemName string
 ---@param recipeName string
 ---@param soundType string
@@ -53,11 +53,11 @@ function LSMRR.MakeLouder(inputItem, inputItemName, recipeName, soundType)
 end
 
 --- Modifies item volume and tooltip
----@param craftRecipeData Java:CraftRecipeData
----@param character Java:Character
+---@param craftRecipeData craftRecipeData
+---@param character character
 ---@param soundType string
 function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
-    print("LSMRR_MakeLouder:")
+    print("LSMRR_OnMakeLouder:")
     local recipe = craftRecipeData:getRecipe();
     local recipeName = recipe:getName();
     local inputItems = craftRecipeData:getAllInputItems();
@@ -65,10 +65,10 @@ function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
     local inputItemName = inputItem:getName();
     local newRangeOfItem = LSMRR.MakeLouder(inputItem, inputItemName, recipeName, soundType);
     if newRangeOfItem == nil then
-        print("    Item range not valid : fail");
+        print("\tItem range not valid : fail");
         return;
     else
-        print("Item range was modifed to:" .. tostring(newRangeOfItem));
+        print("\tItem range was modifed to:" .. tostring(newRangeOfItem));
     end
     --- local newItemName = nil;
 
@@ -83,6 +83,6 @@ function LSMRR.OnMakeLouder(craftRecipeData, character, soundType)
     ---    inputItem:setName(newItemName);
     ---end
     inputItem:setTooltip(getText("LSMRR_Tooltip_item_Volume") .. ": " .. tostring(newRangeOfItem));
-    print("    Item modified : success");
+    print("\tItem modified : success");
 end
 
