@@ -1,5 +1,3 @@
-require 'Items/ProceduralDistributions';
-
 local default_table = ProceduralDistributions;
 
 --- The pass by ref data for default literature chance
