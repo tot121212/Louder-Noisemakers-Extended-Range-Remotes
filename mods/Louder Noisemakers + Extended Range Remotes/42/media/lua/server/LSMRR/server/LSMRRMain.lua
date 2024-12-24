@@ -103,8 +103,3 @@ function LSMRRMain.OnMakeLouder(craftRecipeData, _character, soundType)
     if not newVolumeOfItem then print("\tRecipe/Item volume not found : fail"); end
 end
 
-local modDataSoundTypes = {
-    ["LSMRR_increasedSoundRadius"] = true,
-    ["LSMRR_increasedNoiseRange"] = true,
-    ["LSMRR_increasedRemoteRange"] = true,
-}

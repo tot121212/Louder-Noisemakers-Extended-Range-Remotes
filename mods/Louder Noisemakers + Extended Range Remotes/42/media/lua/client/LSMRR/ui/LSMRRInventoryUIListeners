@@ -1,5 +1,11 @@
 local InventoryUI = require("Starlit/client/ui/InventoryUI");
 
+local modDataSoundTypes = {
+    ["LSMRR_increasedSoundRadius"] = true,
+    ["LSMRR_increasedNoiseRange"] = true,
+    ["LSMRR_increasedRemoteRange"] = true,
+}
+
 --- Adds tooltips to LSMRR_hasModifiedSoundRadius items
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
 local checkForModifiedRadiusItems = function(tooltip, layout, item)
