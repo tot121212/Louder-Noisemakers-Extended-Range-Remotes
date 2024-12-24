@@ -1,17 +1,19 @@
-module LSMRR_Recipes {
-    imports {
+module LSMRR_Recipes
+{
+    imports
+    {
         Base
     }
 
-    craftRecipe Make Digital Watch Louder
+    craftRecipe LSMRR_BoostWatchVolume
     {
         timedAction   = MakingElectrical,
-        Time          = 5,
-        Tags          = InHandCraft,
+        Time          = 10,
+        Tags          = InHandCraft;Electrical,
         category      = Electrical,
         SkillRequired = Electricity:1,
-        AutoLearn     = Electricity:2,
-        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
+        AutoLearn     = Electricity:3,
+        OnCreate      = Recipe.OnCreate.LSMRR_BoostWatchVolume,
         inputs
         {
             item 1 [Base.WristWatch_Right_DigitalBlack;Base.WristWatch_Left_DigitalBlack;Base.WristWatch_Right_DigitalRed;Base.WristWatch_Left_DigitalRed;WristWatch_Right_DigitalDress;WristWatch_Left_DigitalDress] mode:keep flags[Prop2],
@@ -22,15 +24,16 @@ module LSMRR_Recipes {
         }
     }
 
-    craftRecipe Make Alarm Clock Louder
+    craftRecipe LSMRR_AdjustGearsOnAlarmClock
     {
         timedAction   = MakingElectrical,
         Time          = 10,
-        Tags          = InHandCraft,
+        Tags          = AnySurfaceCraft;Electrical,
         category      = Electrical,
-        SkillRequired = Electricity:2,
+        NeedToBeLearn = True,
+        SkillRequired = Electricity:1;Maintenance:1,
         AutoLearn     = Electricity:3,
-        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
+        OnCreate      = Recipe.OnCreate.LSMRR_AdjustGearsOnAlarmClock,
         inputs
         {
             item 1 [Base.AlarmClock2] mode:keep flags[Prop2],
@@ -41,16 +44,16 @@ module LSMRR_Recipes {
         }
     }
 
-    craftRecipe Make Noise Maker Louder
+    craftRecipe LSMRR_ModulateNoiseMakerVolume
     {
         timedAction   = MakingElectrical,
         Time          = 25,
-        Tags          = AnySurfaceCraft,
+        Tags          = AnySurfaceCraft;Electrical,
         category      = Electrical,
         NeedToBeLearn = True,
         SkillRequired = Electricity:2,
         AutoLearn     = Electricity:4,
-        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
+        OnCreate      = Recipe.OnCreate.LSMRR_ModulateNoiseMakerVolume,
         inputs
         {
             item 1 [Base.NoiseTrap;Base.NoiseTrapRemote;Base.NoiseTrapSensorV1;Base.NoiseTrapSensorV2;Base.NoiseTrapSensorV3;Base.NoiseTrapTriggered] mode:keep flags[Prop2],
@@ -61,16 +64,35 @@ module LSMRR_Recipes {
         }
     }
 
-    craftRecipe Make Extended Range Remote Controller
+    craftRecipe LSMRR_ExtendRangeOfRemoteController
     {
         timedAction   = MakingElectrical,
         Time          = 100,
-        Tags          = AnySurfaceCraft,
+        Tags          = AnySurfaceCraft;Electrical,
         category      = Electrical,
         NeedToBeLearn = True,
-        SkillRequired = Electricity:3,
+        SkillRequired = Electricity:3;Maintenance:1,
         AutoLearn     = Electricity:5,
-        OnCreate      = Recipe.OnCreate.LSMRR_MakeLouder,
+        OnCreate      = Recipe.OnCreate.LSMRR_ExtendRangeOfRemoteController,
+        inputs
+        {
+            item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3] mode:keep flags[Prop2],
+            item 1 tags[Screwdriver] mode:keep flags[Prop1],
+        }
+        outputs
+        {
+        }
+    }
+
+    craftRecipe LSMRR_AttachAmplifierToNoiseMaker
+    {
+        timedAction   = MakingElectrical,
+        Time          = 100,
+        Tags          = AnySurfaceCraft;Electrical,
+        category      = Electrical,
+        NeedToBeLearn = True,
+        SkillRequired = Electricity:4;Maintenance:2,
+        OnCreate      = Recipe.OnCreate.LSMRR_AttachAmplifierToNoiseMaker,
         inputs
         {
             item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3] mode:keep flags[Prop2],
