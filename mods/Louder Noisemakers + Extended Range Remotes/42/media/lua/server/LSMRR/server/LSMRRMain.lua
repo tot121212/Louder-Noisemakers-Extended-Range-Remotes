@@ -5,7 +5,7 @@
 
 -- make louder and return indentifier for kind of item
 
-LSMRRMain = {};
+LSMRRMain = {}
 
 -- External table for common data (nameModPrepend and volume values)
 local VolumeData = {
@@ -51,13 +51,13 @@ local RecipeVolumeTable = {
 function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     local newVolumeOfItem;
     -- ensure recipe is valid query
-    local recipeTableData = RecipeVolumeTable[recipeName];
+    local recipeTableData = RecipeVolumeTable[recipeName]
     if recipeTableData == nil then return end
     -- if recipe has volume
-    newVolumeOfItem = recipeTableData["volume"];
+    newVolumeOfItem = recipeTableData["volume"]
     if newVolumeOfItem ~= nil then return newVolumeOfItem end
     -- if input item for recipe has volume
-    newVolumeOfItem = recipeTableData["items"][inputItemName];
+    newVolumeOfItem = recipeTableData["items"][inputItemName]
     if newVolumeOfItem ~= nil then return newVolumeOfItem
     else return end
 end
@@ -67,24 +67,24 @@ end
 ---@param recipeName string
 ---@param soundType string
 function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
-    local recipeVolume = LSMRRMain.getRecipeVolume(recipeName, inputItemName);
+    local recipeVolume = LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     if recipeVolume == nil then return end
 
     if soundType == "Radius" then
-        inputItem:setSoundRadius(recipeVolume);
-        inputItemModData["LSMRR_increasedSoundRadius"] = recipeVolume;
+        inputItem:setSoundRadius(recipeVolume)
+        inputItemModData["LSMRR_increasedSoundRadius"] = recipeVolume
     elseif soundType == "Noise" then
-        inputItem:setNoiseRange(recipeVolume);
-        inputItemModData["LSMRR_increasedNoiseRange"] = recipeVolume;
+        inputItem:setNoiseRange(recipeVolume)
+        inputItemModData["LSMRR_increasedNoiseRange"] = recipeVolume
     elseif soundType == "Remote" then
-        inputItem:setRemoteRange(recipeVolume);
-        inputItemModData["LSMRR_increasedRemoteRange"] = recipeVolume;
+        inputItem:setRemoteRange(recipeVolume)
+        inputItemModData["LSMRR_increasedRemoteRange"] = recipeVolume
     else return end
 
     -- fast bool tag for checking during render
-    inputItemModData["LSMRR_hasModifiedVolume"] = true;
-    inputItemModData["LSMRR_recipeUsedToModify"] = recipeName;
-    return recipeVolume;
+    inputItemModData["LSMRR_hasModifiedVolume"] = true
+    inputItemModData["LSMRR_recipeUsedToModify"] = recipeName
+    return recipeVolume
 end
 
 --- Modifies item "Volume" and modData
@@ -93,13 +93,13 @@ end
 ---@param soundType string
 function LSMRRMain.OnMakeLouder(craftRecipeData, _character, soundType)
     print("LSMRR.OnMakeLouder")
-    local recipe = craftRecipeData:getRecipe();
-    local recipeName = recipe:getName();
-    local inputItems = craftRecipeData:getAllInputItems();
-    local inputItem = inputItems:get(0);
-    local inputItemName = inputItem:getName();
-    local inputItemModData = inputItem:getModData();
-    local newVolumeOfItem = LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData);
-    if newVolumeOfItem == nil then print("\tRecipe/Item volume not found : fail"); end
+    local recipe = craftRecipeData:getRecipe()
+    local recipeName = recipe:getName()
+    local inputItems = craftRecipeData:getAllInputItems()
+    local inputItem = inputItems:get(0)
+    local inputItemName = inputItem:getName()
+    local inputItemModData = inputItem:getModData()
+    local newVolumeOfItem = LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
+    if newVolumeOfItem == nil then print("\tRecipe/Item volume not found : fail") end
 end
 

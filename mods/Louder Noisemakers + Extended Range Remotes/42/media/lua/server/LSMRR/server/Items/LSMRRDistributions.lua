@@ -1,4 +1,4 @@
-local default_table = ProceduralDistributions;
+local default_table = ProceduralDistributions
 
 --- The pass by ref data for default literature chance
 local default_literature_chances = {
@@ -36,7 +36,7 @@ local function mod_literature_table(input_lit_chances, resultCallable)
     for item_name, chance in pairs(input_lit_chances) do
         literature_table[item_name] = tonumber(string.format("%.2f", resultCallable(chance)))
     end
-    return literature_table;
+    return literature_table
 end
 
 local literature_names_with_chances = {
@@ -52,15 +52,15 @@ local literature_module_name = "LSMRR_Items_Literature";
 --- 
 ---@param items table
 ---@param module_name string
----@param _table Java:DistributionsTable
+---@param _table DistributionsTable
 local function iterate_items_into_table(items, module_name, _table)
     for item_name, _ in pairs(items) do
         for distribution, chance_for_item in pairs(items[item_name]) do
-            table.insert(_table["list"][distribution].items, module_name .. "." .. item_name);
-            table.insert(_table["list"][distribution].items, chance_for_item);
+            table.insert(_table["list"][distribution].items, module_name .. "." .. item_name)
+            table.insert(_table["list"][distribution].items, chance_for_item)
         end
     end
 end
 
 --- Add literature to default_table
-iterate_items_into_table(literature_names_with_chances, literature_module_name, default_table);
+iterate_items_into_table(literature_names_with_chances, literature_module_name, default_table)

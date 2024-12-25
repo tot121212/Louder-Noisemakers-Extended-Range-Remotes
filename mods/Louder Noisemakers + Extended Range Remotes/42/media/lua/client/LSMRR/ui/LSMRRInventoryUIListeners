@@ -14,24 +14,24 @@ function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, 
     local modData = item:getModData()
     if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
 
-    local layoutItem = LayoutItem.new();
-    layout.items:add(layoutItem);
-    local hasValidSoundType = false;
+    local layoutItem = LayoutItem.new()
+    layout.items:add(layoutItem)
+    local hasValidSoundType = false
     for k, _ in pairs(modDataSoundTypes) do
         if modData[k] ~= nil then -- it has a sound type, which means it has a custom name
-            layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1);
-            layoutItem:setValue(tostring(modData[k]), 1, 1, 1, 1);
-            item:setCustomName(true);
-            local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"];
+            layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1)
+            layoutItem:setValue(tostring(modData[k]), 1, 1, 1, 1)
+            item:setCustomName(true)
+            local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"]
             if LSMRRRecipe ~= nil then item:setName(LSMRRRecipe) end
             hasValidSoundType = true;
         end
     end
     if hasValidSoundType == nil then
-        print("\tItem did not have any valid sound type");
+        print("\tItem did not have any valid sound type")
     end
 end
 
-InventoryUI.onFillItemTooltip:addListener(LSMRRInventoryUIListeners.CheckForModifiedRadiusItems);
+InventoryUI.onFillItemTooltip:addListener(LSMRRInventoryUIListeners.CheckForModifiedRadiusItems)
 
-return LSMRRInventoryUIListeners;return LSMRRInventoryUIListeners
+return LSMRRInventoryUIListeners
