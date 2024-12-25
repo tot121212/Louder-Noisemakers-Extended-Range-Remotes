@@ -7,21 +7,33 @@ local modDataSoundTypes = {
     ["LSMRR_increasedNoiseRange"] = true,
     ["LSMRR_increasedRemoteRange"] = true,
 }
+function LSMRRInventoryUIListeners.getModDataSoundTypes() return modDataSoundTypes end
 
 --- Adds tooltips to LSMRR_hasModifiedSoundRadius items
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
 function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
     local modData = item:getModData()
     if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
-    print("CheckForModifiedRadiusItems Proc")
+    --print("CheckForModifiedRadiusItems Proc")
     local layoutItem = LayoutItem.new()
     layout.items:add(layoutItem)
     local hasValidSoundType = false
     for k, _ in pairs(modDataSoundTypes) do
-        if modData[k] ~= nil then -- it has a sound type, which means it has a custom name
+        if modData[k] ~= nil then -- if has one of the sound types modData identifier
             layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1)
-            layoutItem:setValue(tostring(modData[k]), 1, 1, 1, 1)
-            layoutItem.rightJustify = true
+
+            local volume = modData[k]
+            local max = LSMRRMain.getMaxVolume()
+            if max < volume then
+                max = volume
+            end
+            --- @type string
+            local progressValue = tonumber(string.format(".2f", max / volume))
+            if math.abs(progressValue) > 1.0 then
+                progressValue = 1.0
+            end
+            layoutItem:setProgress(progressValue, progressValue, 1, 1, 1)
+
             -- prepend to name
             local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"]
             local recipeTable = LSMRRMain.RecipeVolumeTable[LSMRRRecipe]

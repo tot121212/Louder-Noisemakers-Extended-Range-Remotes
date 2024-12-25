@@ -15,6 +15,22 @@ local VolumeData = {
     ["Amplified"] = {nameModPrepend = "Amplified", volume = 400},
     ["Extended"] = {nameModPrepend = "Extended", volume = nil},  -- For cases where volume is nil
 }
+function LSMRRMain.getVolumeData() return VolumeData end
+
+local baseMaxVolume = 100
+local updateMaxVolume = function()
+    local maxVolume = -1
+    for key, data in pairs(VolumeData) do
+        if data.volume and data.volume > maxVolume then
+            maxVolume = data.volume
+        end
+    end
+    if maxVolume ~= 0 then
+        return maxVolume
+    end
+end
+local VolumeMax = updateMaxVolume() or baseMaxVolume
+function LSMRRMain.getMaxVolume() return VolumeMax end
 
 -- External table for items
 local ItemData = {
@@ -22,6 +38,7 @@ local ItemData = {
     ["RemoteCraftedV2"] = 40,
     ["RemoteCraftedV3"] = 100,
 }
+function LSMRRMain.getItemData() return ItemData end
 
 -- Main Recipe Volume Table using references to the external tables
 local RecipeVolumeTable = {
@@ -47,6 +64,7 @@ local RecipeVolumeTable = {
         ["items"] = ItemData,  -- Reference to the external items table
     },
 }
+function LSMRRMain.getRecipeVolumeTable() return RecipeVolumeTable end
 
 function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     local newVolumeOfItem;
