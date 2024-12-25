@@ -93,10 +93,8 @@ end
 ---@param soundType string
 function LSMRRMain.OnMakeLouder(craftRecipeData, _character, soundType)
     print("LSMRR.OnMakeLouder")
-    local recipe = craftRecipeData:getRecipe()
-    local recipeName = recipe:getName()
-    local inputItems = craftRecipeData:getAllInputItems()
-    local inputItem = inputItems:get(0)
+    local recipeName = craftRecipeData:getRecipe():getName()
+    local inputItem = craftRecipeData:getAllInputItems():get(0)
     local inputItemName = inputItem:getName()
     local inputItemModData = inputItem:getModData()
     local newVolumeOfItem = LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)

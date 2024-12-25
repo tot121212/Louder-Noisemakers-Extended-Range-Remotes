@@ -13,7 +13,7 @@ local modDataSoundTypes = {
 function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
     local modData = item:getModData()
     if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
-
+    print("CheckForModifiedRadiusItems Proc")
     local layoutItem = LayoutItem.new()
     layout.items:add(layoutItem)
     local hasValidSoundType = false
@@ -21,10 +21,16 @@ function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, 
         if modData[k] ~= nil then -- it has a sound type, which means it has a custom name
             layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1)
             layoutItem:setValue(tostring(modData[k]), 1, 1, 1, 1)
-            item:setCustomName(true)
+            layoutItem.rightJustify = true
+            -- prepend to name
             local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"]
-            if LSMRRRecipe ~= nil then item:setName(LSMRRRecipe) end
-            hasValidSoundType = true;
+            local recipeTable = LSMRRMain.RecipeVolumeTable[LSMRRRecipe]
+            local nameToPrepend = recipeTable["nameModPrepend"]
+            if LSMRRRecipe ~= nil and nameToPrepend ~= nil then
+                item:setCustomName(true)
+                item:setName(tostring(nameToPrepend) .. item:getName())
+            end
+            hasValidSoundType = true
         end
     end
     if hasValidSoundType == nil then
