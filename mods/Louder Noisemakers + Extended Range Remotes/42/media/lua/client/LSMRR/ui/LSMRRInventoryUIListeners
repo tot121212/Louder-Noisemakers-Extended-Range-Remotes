@@ -10,8 +10,8 @@ local modDataSoundTypes = {
 
 --- Adds tooltips to LSMRR_hasModifiedSoundRadius items
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
-local LSMRRInventoryUIListeners.CheckForModifiedRadiusItems = function (tooltip, layout, item)
-    local modData = item:getModData();
+function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
+    local modData = item:getModData()
     if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
 
     local layoutItem = LayoutItem.new();
@@ -34,4 +34,4 @@ end
 
 InventoryUI.onFillItemTooltip:addListener(LSMRRInventoryUIListeners.CheckForModifiedRadiusItems);
 
-return LSMRRInventoryUIListeners;
+return LSMRRInventoryUIListeners;return LSMRRInventoryUIListeners
