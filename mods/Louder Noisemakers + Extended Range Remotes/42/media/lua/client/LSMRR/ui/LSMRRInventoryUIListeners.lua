@@ -14,15 +14,16 @@ function LSMRRInventoryUIListeners.getModDataSoundTypes() return modDataSoundTyp
 function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
     local modData = item:getModData()
     if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
-    --print("CheckForModifiedRadiusItems Proc")
+    print("CheckForModifiedRadiusItems Proc")
     local layoutItem = LayoutItem.new()
     layout.items:add(layoutItem)
     local hasValidSoundType = false
     for k, _ in pairs(modDataSoundTypes) do
         if modData[k] ~= nil then -- if has one of the sound types modData identifier
             layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1)
-
+            
             local volume = modData[k]
+            --[[
             local max = LSMRRMain.getMaxVolume()
             if max < volume then
                 max = volume
@@ -33,6 +34,9 @@ function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, 
                 progressValue = 1.0
             end
             layoutItem:setProgress(progressValue, progressValue, 1, 1, 1)
+            ]]
+            
+            layoutItem:setValue(volume, 1, 1, 0,8, 1)
 
             -- prepend to name
             local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"]
