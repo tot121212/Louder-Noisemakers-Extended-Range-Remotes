@@ -52,14 +52,14 @@ function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     local newVolumeOfItem;
     -- ensure recipe is valid query
     local recipeTableData = RecipeVolumeTable[recipeName];
-    if not recipeTableData then return; end
+    if recipeTableData == nil then return end
     -- if recipe has volume
     newVolumeOfItem = recipeTableData["volume"];
-    if newVolumeOfItem then return newVolumeOfItem; end
+    if newVolumeOfItem ~= nil then return newVolumeOfItem end
     -- if input item for recipe has volume
     newVolumeOfItem = recipeTableData["items"][inputItemName];
-    if newVolumeOfItem then return newVolumeOfItem;
-    else return; end
+    if newVolumeOfItem ~= nil then return newVolumeOfItem
+    else return end
 end
 
 ---@param inputItem inventoryItem
@@ -68,7 +68,7 @@ end
 ---@param soundType string
 function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
     local recipeVolume = LSMRRMain.getRecipeVolume(recipeName, inputItemName);
-    if not recipeVolume then return end
+    if recipeVolume == nil then return end
 
     if soundType == "Radius" then
         inputItem:setSoundRadius(recipeVolume);
@@ -79,7 +79,7 @@ function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, i
     elseif soundType == "Remote" then
         inputItem:setRemoteRange(recipeVolume);
         inputItemModData["LSMRR_increasedRemoteRange"] = recipeVolume;
-    else return; end
+    else return end
 
     -- fast bool tag for checking during render
     inputItemModData["LSMRR_hasModifiedVolume"] = true;
@@ -100,6 +100,6 @@ function LSMRRMain.OnMakeLouder(craftRecipeData, _character, soundType)
     local inputItemName = inputItem:getName();
     local inputItemModData = inputItem:getModData();
     local newVolumeOfItem = LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData);
-    if not newVolumeOfItem then print("\tRecipe/Item volume not found : fail"); end
+    if newVolumeOfItem == nil then print("\tRecipe/Item volume not found : fail"); end
 end
 
