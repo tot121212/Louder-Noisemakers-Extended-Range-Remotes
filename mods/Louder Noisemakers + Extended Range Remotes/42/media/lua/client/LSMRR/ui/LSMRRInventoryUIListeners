@@ -1,5 +1,7 @@
 local InventoryUI = require("Starlit/client/ui/InventoryUI");
 
+local LSMRRInventoryUIListeners = {}
+
 local modDataSoundTypes = {
     ["LSMRR_increasedSoundRadius"] = true,
     ["LSMRR_increasedNoiseRange"] = true,
@@ -8,28 +10,28 @@ local modDataSoundTypes = {
 
 --- Adds tooltips to LSMRR_hasModifiedSoundRadius items
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
-local checkForModifiedRadiusItems = function(tooltip, layout, item)
+local LSMRRInventoryUIListeners.CheckForModifiedRadiusItems = function (tooltip, layout, item)
     local modData = item:getModData();
-    if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return; end -- quick check
+    if item:getModData()["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
 
     local layoutItem = LayoutItem.new();
     layout.items:add(layoutItem);
-    local hasValidSoundType;
-    for k, _ in ipairs(modDataSoundTypes) do
-        if modData[k] then -- it has a sound type, which means it has a custom name
-            layoutItem:setLabel(getText("Tooltip_LSMRR_ItemVolume") .. ":", 1, 0.8, 0.8, 1);
+    local hasValidSoundType = false;
+    for k, _ in pairs(modDataSoundTypes) do
+        if modData[k] ~= nil then -- it has a sound type, which means it has a custom name
+            layoutItem:setLabel((getText("Tooltip_LSMRR_ItemVolume") .. ":"), 1, 0.8, 0.8, 1);
             layoutItem:setValue(tostring(modData[k]), 1, 1, 1, 1);
             item:setCustomName(true);
             local LSMRRRecipe = modData["LSMRR_recipeUsedToModify"];
-            if LSMRRRecipe then item:setName(LSMRRRecipe); end
+            if LSMRRRecipe ~= nil then item:setName(LSMRRRecipe) end
             hasValidSoundType = true;
         end
     end
-    if not hasValidSoundType then
+    if hasValidSoundType == nil then
         print("\tItem did not have any valid sound type");
     end
 end
 
-InventoryUI.onFillItemTooltip:addListener(checkForModifiedRadiusItems);
+InventoryUI.onFillItemTooltip:addListener(LSMRRInventoryUIListeners.CheckForModifiedRadiusItems);
 
---- every onFillItemTooltip, check item mod data for each table string
+return LSMRRInventoryUIListeners;
