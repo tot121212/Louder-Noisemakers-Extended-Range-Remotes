@@ -1,7 +1,7 @@
 Recipes_EN = {
-    Recipe_LSMRR_BoostWatchVolume = "Boost Watch Volume",
-    Recipe_LSMRR_AdjustGearsOnAlarmClock = "Adjust Alarm Clock Gears",
-    Recipe_LSMRR_ModulateNoiseMakerVolume = "Modulate Noise Maker Volume",
-    Recipe_LSMRR_ExtendRangeOfRemoteController = "Extend Range Of Remote Controller",
-    Recipe_LSMRR_AttachAmplifierToNoiseMaker = "Attach Amplifier To Noise Maker",
+    Recipe_LSMRRBoostWatchVolume = "Boost Watch Volume",
+    Recipe_LSMRRAdjustGearsOnAlarmClock = "Adjust Alarm Clock Volume Control Gears",
+    Recipe_LSMRRModulateNoiseMakerVolume = "Modulate Noise Maker Volume",
+    Recipe_LSMRRExtendRangeOfRemoteController = "Extend Range Of Remote Controller",
+    Recipe_LSMRRAttachAmplifierToNoiseMaker = "Attach Amplifier To Noise Maker",
 }

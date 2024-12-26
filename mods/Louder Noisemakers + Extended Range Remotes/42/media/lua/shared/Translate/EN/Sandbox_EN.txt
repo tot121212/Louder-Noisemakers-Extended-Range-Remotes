@@ -1,0 +1,17 @@
+Sandbox_EN = {
+    Sandbox_LSMRR = "LSMRR Distances",
+    Sandbox_LSMRR_DigitalWatchVolume = "Bass Boosted Digital Watches",
+    Sandbox_LSMRR_DigitalWatchVolume_tooltip = "Volume radius of item",
+    Sandbox_LSMRR_AlarmClockVolume = "Tuned Alarm Clocks",
+    Sandbox_LSMRR_AlarmClockVolume_tooltip = "Volume radius of item",
+    Sandbox_LSMRR_NoiseMakerVolume = "Hacked Noise Maker",
+    Sandbox_LSMRR_NoiseMakerVolume_tooltip = "Volume radius of item",
+    Sandbox_LSMRR_AmplifiedNoiseMakerVolume= "Amplified Noise Maker",
+    Sandbox_LSMRR_AmplifiedNoiseMakerVolume_tooltip = "Volume radius of item",
+    Sandbox_LSMRR_RemoteCraftedV1Range = "Extended Remote Controller V1",
+    Sandbox_LSMRR_RemoteCraftedV1Range_tooltip = "Range of item",
+    Sandbox_LSMRR_RemoteCraftedV2Range = "Extended Remote Controller V2",
+    Sandbox_LSMRR_RemoteCraftedV2Range_tooltip = "Range of item",
+    Sandbox_LSMRR_RemoteCraftedV3Range = "Extended Remote Controller V3",
+    Sandbox_LSMRR_RemoteCraftedV3Range_tooltip = "Range of item",
+}

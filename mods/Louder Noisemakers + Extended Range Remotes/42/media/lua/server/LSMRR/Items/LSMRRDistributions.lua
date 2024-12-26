@@ -40,9 +40,9 @@ local function mod_literature_table(input_lit_chances, resultCallable)
 end
 
 local literature_names_with_chances = {
-    ["LSMRR_ExtendedRangeRemoteMag"] = default_literature_chances,
-    ["LSMRR_ModulatedNoiseMakerMag"] = default_literature_chances,
-    ["LSMRR_AddAmplifierSchematic"] = mod_literature_table(default_literature_chances, function(a) return (a/2) end),
+    ["LSMRRExtendedRangeRemoteMag"] = default_literature_chances,
+    ["LSMRRModulatedNoiseMakerMag"] = default_literature_chances,
+    ["LSMRRAddAmplifierSchematic"] = mod_literature_table(default_literature_chances, function(a) return (a/2) end),
 }
 
 local literature_module_name = "LSMRR_Items_Literature";

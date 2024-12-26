@@ -1,11 +1,11 @@
-module LSMRR_Items_Literature
+module LSMRR
 {
-    imports 
+    imports
     {
         Base
     }
-
-    item LSMRR_ExtendedRangeRemoteMag
+    
+    item LSMRRExtendedRangeRemoteMag
     {
         DisplayCategory  = SkillBook,
         Weight           = 0.5,
@@ -14,13 +14,13 @@ module LSMRR_Items_Literature
         Icon             = MagazineElectronics01,
         BoredomChange    = -10,
         StressChange     = -15,
-        TeachedRecipes   = Recipe_LSMRR_ModifyRangeOfRemoteController,
+        TeachedRecipes   = LSMRRModifyRangeOfRemoteController,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec1Ground,
         Tags = Magazine,
     }
 
-    item LSMRR_ModulatedNoiseMakerMag
+    item LSMRRModulatedNoiseMakerMag
     {
         DisplayCategory  = SkillBook,
         Weight           = 0.5,
@@ -29,13 +29,13 @@ module LSMRR_Items_Literature
         Icon             = MagazineElectronics03,
         BoredomChange    = -10,
         StressChange     = -15,
-        TeachedRecipes   = Recipe_LSMRR_ModulateNoiseMakerVolume,
+        TeachedRecipes   = LSMRRModulateNoiseMakerVolume,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec3Ground,
         Tags = Magazine,
     }
 
-    item LSMRR_AddAmplifierSchematic
+    item LSMRRAddAmplifierSchematic
     {
         DisplayCategory  = SkillBook,
         Weight           = 0.1,
@@ -43,7 +43,7 @@ module LSMRR_Items_Literature
         DisplayName      = Noise Amplification of Remote Electrical Devices: Documentation,
         Icon             = Paperwork_Graph_Crumpled,
         BoredomChange    = 10,
-        TeachedRecipes   = Recipe_LSMRR_AttachAmplifierToNoiseMaker,
+        TeachedRecipes   = LSMRRAttachAmplifierToNoiseMaker,
         StaticModel      = RecipeClipping,
         WorldStaticModel = RecipeClipping,
         Tags = NewspaperRead,

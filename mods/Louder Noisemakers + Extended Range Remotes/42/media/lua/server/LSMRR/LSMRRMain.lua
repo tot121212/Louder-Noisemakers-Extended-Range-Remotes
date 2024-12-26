@@ -6,69 +6,48 @@
 -- make louder and return indentifier for kind of item
 
 LSMRRMain = {}
+local sandboxVars = SandboxVars.LSMRR
 
--- External table for common data (nameModPrepend and volume values)
-local VolumeData = {
-    ["Bass Boosted"] = {nameModPrepend = "Bass Boosted", volume = 20},
-    ["Tuned"] = {nameModPrepend = "Tuned", volume = 40},
-    ["Hacked"] = {nameModPrepend = "Hacked", volume = 100},
-    ["Amplified"] = {nameModPrepend = "Amplified", volume = 400},
-    ["Extended"] = {nameModPrepend = "Extended", volume = nil},  -- For cases where volume is nil
+local baseProgressBarMax = 100
+local progressBarMax = baseProgressBarMax
+function LSMRRMain.getProgressBarMax() return progressBarMax end
+
+-- Remote Controller ranges
+local RemoteItemData = {
+    ["RemoteCraftedV1"] = sandboxVars.RemoteCraftedV1Range,
+    ["RemoteCraftedV2"] = sandboxVars.RemoteCraftedV2Range,
+    ["RemoteCraftedV3"] = sandboxVars.RemoteCraftedV3Range,
 }
-function LSMRRMain.getVolumeData() return VolumeData end
 
-local baseMaxVolume = 100
-local updateMaxVolume = function()
-    local maxVolume = -1
-    for key, data in pairs(VolumeData) do
-        if data.volume and data.volume > maxVolume then
-            maxVolume = data.volume
-        end
-    end
-    if maxVolume ~= 0 then
-        return maxVolume
-    end
-end
-local VolumeMax = updateMaxVolume() or baseMaxVolume
-function LSMRRMain.getMaxVolume() return VolumeMax end
-
--- External table for items
-local ItemData = {
-    ["RemoteCraftedV1"] = 20,
-    ["RemoteCraftedV2"] = 40,
-    ["RemoteCraftedV3"] = 100,
-}
-function LSMRRMain.getItemData() return ItemData end
-
--- Main Recipe Volume Table using references to the external tables
+-- Maps recipe to volume and allows higher specificity with item tables
 local RecipeVolumeTable = {
-    ["Recipe_LSMRR_BoostWatchVolume"] = {
-        ["nameModPrepend"] = VolumeData["Bass Boosted"].nameModPrepend,
-        ["volume"] = VolumeData["Bass Boosted"].volume,
+    ["LSMRRBoostWatchVolume"] = {
+        ["nameModPrepend"] = "Bass Boosted",
+        ["volume"] = sandboxVars.DigitalWatchVolume,
     },
-    ["Recipe_LSMRR_AdjustGearsOnAlarmClock"] = {
-        ["nameModPrepend"] = VolumeData["Tuned"].nameModPrepend,
-        ["volume"] = VolumeData["Tuned"].volume,
+    ["LSMRRAdjustGearsOnAlarmClock"] = {
+        ["nameModPrepend"] = "Tuned",
+        ["volume"] = sandboxVars.AlarmClockVolume,
     },
-    ["Recipe_LSMRR_ModulateNoiseMakerVolume"] = {
-        ["nameModPrepend"] = VolumeData["Hacked"].nameModPrepend,
-        ["volume"] = VolumeData["Hacked"].volume,
+    ["LSMRRModulateNoiseMakerVolume"] = {
+        ["nameModPrepend"] = "Hacked",
+        ["volume"] = sandboxVars.NoiseMakerVolume,
     },
-    ["Recipe_LSMRR_AttachAmplifierToNoiseMaker"] = {
-        ["nameModPrepend"] = VolumeData["Amplified"].nameModPrepend,
-        ["volume"] = VolumeData["Amplified"].volume,
+    ["LSMRRAttachAmplifierToNoiseMaker"] = {
+        ["nameModPrepend"] = "Amplified",
+        ["volume"] = sandboxVars.AmplifiedNoiseMakerVolume,
     },
-    ["Recipe_LSMRR_ExtendRangeOfRemoteController"] = {
-        ["nameModPrepend"] = VolumeData["Extended"].nameModPrepend,
-        ["volume"] = VolumeData["Extended"].volume,
-        ["items"] = ItemData,  -- Reference to the external items table
+    ["LSMRRExtendRangeOfRemoteController"] = {
+        ["nameModPrepend"] = "Extended",
+        ["volume"] = nil,
+        ["items"] = RemoteItemData,  -- Reference to the external items table
     },
 }
 function LSMRRMain.getRecipeVolumeTable() return RecipeVolumeTable end
 
 function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     local newVolumeOfItem;
-    -- ensure recipe is valid query
+    -- ensure recipe is valid
     local recipeTableData = RecipeVolumeTable[recipeName]
     if recipeTableData == nil then return end
     -- if recipe has volume
@@ -76,8 +55,7 @@ function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     if newVolumeOfItem ~= nil then return newVolumeOfItem end
     -- if input item for recipe has volume
     newVolumeOfItem = recipeTableData["items"][inputItemName]
-    if newVolumeOfItem ~= nil then return newVolumeOfItem
-    else return end
+    if newVolumeOfItem ~= nil then return newVolumeOfItem end
 end
 
 ---@param inputItem inventoryItem
@@ -86,7 +64,7 @@ end
 ---@param soundType string
 function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
     local recipeVolume = LSMRRMain.getRecipeVolume(recipeName, inputItemName)
-    if recipeVolume == nil then return end
+    if recipeVolume == nil then return nil end
 
     if soundType == "Radius" then
         inputItem:setSoundRadius(recipeVolume)
@@ -97,11 +75,12 @@ function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, i
     elseif soundType == "Remote" then
         inputItem:setRemoteRange(recipeVolume)
         inputItemModData["LSMRR_increasedRemoteRange"] = recipeVolume
-    else return end
+    else return nil end
 
     -- fast bool tag for checking during render
     inputItemModData["LSMRR_hasModifiedVolume"] = true
     inputItemModData["LSMRR_recipeUsedToModify"] = recipeName
+    --inputItemModData["LSMRR_nameToPrepend"] = RecipeVolumeTable[recipeName]["nameModPrep  end"]
     return recipeVolume
 end
 
@@ -109,7 +88,7 @@ end
 ---@param craftRecipeData craftRecipeData
 ---@param character character
 ---@param soundType string
-function LSMRRMain.OnMakeLouder(craftRecipeData, _character, soundType)
+function LSMRRMain.OnMakeLouder(craftRecipeData, character, soundType)
     print("LSMRR.OnMakeLouder")
     local recipeName = craftRecipeData:getRecipe():getName()
     local inputItem = craftRecipeData:getAllInputItems():get(0)

@@ -1,17 +1,17 @@
 local Recipe = Recipe;
 
-function Recipe.OnCreate.LSMRR_BoostWatchVolume(craftRecipeData, character)
+function Recipe.OnCreate.LSMRRBoostWatchVolume(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Radius")
 end
-function Recipe.OnCreate.LSMRR_AdjustGearsOnAlarmClock(craftRecipeData, character)
+function Recipe.OnCreate.LSMRRAdjustGearsOnAlarmClock(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Radius")
 end
-function Recipe.OnCreate.LSMRR_ModulateNoiseMakerVolume(craftRecipeData, character)
+function Recipe.OnCreate.LSMRRModulateNoiseMakerVolume(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Noise")
 end
-function Recipe.OnCreate.LSMRR_ExtendRangeOfRemoteController(craftRecipeData, character)
+function Recipe.OnCreate.LSMRRExtendRangeOfRemoteController(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Remote")
 end
-function Recipe.OnCreate.LSMRR_AttachAmplifierToNoiseMaker(craftRecipeData, character)
+function Recipe.OnCreate.LSMRRAttachAmplifierToNoiseMaker(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Noise")
 end
