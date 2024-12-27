@@ -95,8 +95,8 @@ module LSMRR
         OnCreate      = Recipe.OnCreate.LSMRRAttachAmplifierToNoiseMaker,
         inputs
         {
-            item 1 [Base.Amplifier] flags[Prop1],
             item 1 [Base.NoiseTrap;Base.NoiseTrapRemote;Base.NoiseTrapSensorV1;Base.NoiseTrapSensorV2;Base.NoiseTrapSensorV3;Base.NoiseTrapTriggered] mode:keep flags[Prop2],
+            item 1 [Base.Amplifier] flags[Prop1],
         }
         outputs
         {
