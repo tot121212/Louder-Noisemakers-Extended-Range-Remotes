@@ -1,4 +1,4 @@
-local LSMRRMain = require "lua/server/LSMRR/LSMRRMain"
+local LSMRRMain = require "LSMRR/LSMRRMain"
 if LSMRRMain == nil then print("LSMRRMain is nil") return end
 
 local Recipe = Recipe;
@@ -18,3 +18,5 @@ end
 function Recipe.OnCreate.LSMRRAttachAmplifierToNoiseMaker(craftRecipeData, character)
     LSMRRMain.OnMakeLouder(craftRecipeData, character, "Noise")
 end
+
+return LSMRRMain

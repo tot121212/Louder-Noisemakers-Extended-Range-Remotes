@@ -1,7 +1,7 @@
-local starlitEvents = require "lua/shared/Starlit/Events"
+local starlitEvents = require "Starlit/Events"
 if starlitEvents == nil then print("LSMRR: Failed to load Starlit Events") return end
 
-local LSMRREvents = {}
+LSMRREvents = {}
 
 LSMRREvents.onItemLoaded = starlitEvents.new()
 

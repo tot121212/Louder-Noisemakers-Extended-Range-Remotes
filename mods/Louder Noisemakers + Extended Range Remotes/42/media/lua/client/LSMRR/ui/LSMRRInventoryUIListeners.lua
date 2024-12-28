@@ -1,4 +1,4 @@
-local InventoryUI = require("lua/shared/Starlit/client/ui/InventoryUI")
+local InventoryUI = require("Starlit/client/ui/InventoryUI")
 if InventoryUI == nil then print("InventoryUI is nil") return end
 
 local LSMRRInventoryUIListeners = {}
