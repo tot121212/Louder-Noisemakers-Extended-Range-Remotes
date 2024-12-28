@@ -1,4 +1,5 @@
-local InventoryUI = require("Starlit/client/ui/InventoryUI")
+local InventoryUI = require("lua/shared/Starlit/client/ui/InventoryUI")
+if InventoryUI == nil then print("InventoryUI is nil") return end
 
 local LSMRRInventoryUIListeners = {}
 
@@ -26,7 +27,9 @@ local callback_render = ISToolTipInv.render ]]
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
 function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
     local modData = item:getModData()
-    if not modData.LSMRR.hasModifiedVolume then return end -- quick check
+    if modData == nil then return end
+    if modData.LSMRR == nil then return end
+    if modData.LSMRR.hasModifiedVolume ~= true then return end -- quick check
     print("CheckForModifiedRadiusItems Proc")
     local hasValidSoundType = false
     for k, v in pairs(modDataSoundTypes) do
@@ -37,18 +40,19 @@ function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, 
 
             -- local volume = modData[k]
             local layoutItem = layout:addItem()
+            if layoutItem == nil then return end
             layoutItem:setLabel(getText("Tooltip_LSMRR_ItemVolume"), 1, 0.8, 0.8, 1)
             --if LSMRRInventoryUIListeners.shouldBeProgressBar == true then
                 --LSMRRInventoryUIListeners.MakeProgressBar(volume, layoutItem, tooltip, layout)
             --else
             local soundTypeVolume
             local soundTypeFunc = soundTypeFuncs[v]
-            if soundTypeFunc then soundTypeVolume = soundTypeFunc(item) end
-            if not soundTypeVolume then print("soundType not valid on item")return end
+            if soundTypeFunc == nil then print("soundTypeFunc not valid")return end
+            soundTypeVolume = soundTypeFunc(item)
+            if soundTypeVolume == nil then print("soundType not valid on item") return end
             layoutItem:setValue(tostring(soundTypeVolume), 1, 1, 1, 1)
             --layoutItem:setValueRightNoPlus(tostring(soundTypeVolumeFromItemDirectly))
             --end
-            item:setCustomName(true)
         end
     end
     if hasValidSoundType ~= true then

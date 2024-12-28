@@ -1,3 +1,6 @@
+local LSMRRMain = require "lua/server/LSMRR/LSMRRMain"
+if LSMRRMain == nil then print("LSMRRMain is nil") return end
+
 local Recipe = Recipe;
 
 function Recipe.OnCreate.LSMRRBoostWatchVolume(craftRecipeData, character)

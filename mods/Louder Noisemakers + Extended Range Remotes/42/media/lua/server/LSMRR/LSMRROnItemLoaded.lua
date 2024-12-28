@@ -1,5 +1,5 @@
-local LSMRRMain = require "server/LSMRR/LSMRRMain"
-local LSMRREvents = require "server/LSMRR/LSMRREvents"
+local LSMRRMain = require "lua/server/LSMRR/LSMRRMain"
+local LSMRREvents = require "lua/server/LSMRR/LSMRREvents"
 
 local onItemLoaded = function (item)
     LSMRRMain.SetItemPropertiesFromModData(item)

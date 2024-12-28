@@ -45,7 +45,7 @@ local literature_names_with_chances = {
     ["LSMRRAddAmplifierSchematic"] = mod_literature_table(default_literature_chances, function(a) return (a/2) end),
 }
 
-local literature_module_name = "LSMRR_Items_Literature";
+local literature_module_name = "LSMRR";
 
 --- Iterate items and item_names and add to _table with module_name prepended
 --- Should make a seperate list with the distributions but... :D

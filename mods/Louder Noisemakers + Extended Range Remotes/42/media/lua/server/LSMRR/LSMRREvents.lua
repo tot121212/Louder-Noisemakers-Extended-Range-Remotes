@@ -1,4 +1,5 @@
-local starlitEvents = require "Starlit/Events"
+local starlitEvents = require "lua/shared/Starlit/Events"
+if starlitEvents == nil then print("LSMRR: Failed to load Starlit Events") return end
 
 local LSMRREvents = {}
 
@@ -10,7 +11,7 @@ LSMRREvents.Functions = {}
 
 -- Checks an individual item and processes its containers if it is an InventoryContainer
 function LSMRREvents.Functions.checkItem(item)
-    if not item then return end
+    if item == nil then return end
     if instanceof(item, "InventoryContainer") then
         if item:getInventory() then
             LSMRREvents.Functions.checkFromContainer(item:getInventory())
@@ -26,7 +27,7 @@ function LSMRREvents.Functions.checkItem(item)
 end
 
 function LSMRREvents.Functions.checkFromContainer(container)
-    if not container then return end
+    if container == nil then return end
     local containerItems = container:getItems()
     if containerItems then
         for i=0, containerItems:size()-1 do
@@ -38,14 +39,14 @@ end
 
 -- Handles checking multiple containers in an object or a single container
 function LSMRREvents.Functions.checkAllPossibleContainers(containerObj)
-    if containerObj.getContainerCount() and containerObj.getContainerCount() > 1 then
+    if containerObj:getContainerCount() and containerObj:getContainerCount() > 1 then
         -- Process multiple containers
         for containerindex = 0, containerObj:getContainerCount() do
             LSMRREvents.Functions.checkFromContainer(containerObj:getContainerByIndex(containerindex))
         end
     else
         -- Process single container
-        if containerObj.getItemContainer() then
+        if containerObj:getItemContainer() then
             LSMRREvents.Functions.checkFromContainer(containerObj:getItemContainer())
         else
             LSMRREvents.Functions.checkFromContainer(containerObj:getContainer())
@@ -78,7 +79,7 @@ end
 
 -- Checks a game world grid square for LSMRR items
 function LSMRREvents.Listeners.checkGridsquareForLSMRRItems(square)
-    if not square then return end
+    if square == nil then return end
     local worldObjects = square:getWorldObjects()
     if worldObjects:size() == 0 then return end
     for i = 0, worldObjects:size() - 1 do

@@ -49,7 +49,7 @@ function LSMRRMain.getRecipeVolume(recipeName, inputItemName)
     local newVolumeOfItem;
     -- ensure recipe is valid
     local recipeTableData = RecipeVolumeTable[recipeName]
-    if not recipeTableData then return end
+    if recipeTableData == nil then return end
     -- if recipe has volume
     newVolumeOfItem = recipeTableData["volume"]
     if newVolumeOfItem then return newVolumeOfItem end
@@ -60,8 +60,8 @@ end
 
 function LSMRRMain.SetItemPropertiesFromModData(inventoryItem)
     local modData = inventoryItem:getModData()
-    if modData.LSMRR then return end
-    if modData.LSMRR.hasModifiedVolume then
+    if modData.LSMRR == nil then return end
+    if modData.LSMRR.hasModifiedVolume ~= true then
         if modData.LSMRR.increasedSoundRadius then
             inventoryItem:setSoundRadius(modData.LSMRR.increasedSoundRadius)
         elseif modData.LSMRR.increasedNoiseRange then
@@ -78,8 +78,8 @@ end
 ---@param soundType string
 function LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
     local recipeVolume = LSMRRMain.getRecipeVolume(recipeName, inputItemName)
-    if not recipeVolume then return end
-    if not inputItemModData.LSMRR then inputItemModData.LSMRR = {} end
+    if recipeVolume == nil then return end
+    if inputItemModData.LSMRR == nil then inputItemModData.LSMRR = {} end
     -- initialize soundType
     if soundType == "Radius" then
         inputItemModData.LSMRR.increasedSoundRadius = recipeVolume
@@ -105,11 +105,15 @@ end
 function LSMRRMain.OnMakeLouder(craftRecipeData, character, soundType)
     print("LSMRR.OnMakeLouder")
     local recipeName = craftRecipeData:getRecipe():getName()
+    if recipeName == nil then print("\tRecipe name not found : fail") end
     local inputItem = craftRecipeData:getAllKeepInputItems():get(0)
+    if inputItem == nil then print("\tInput item not found : fail") end
     local inputItemName = inputItem:getName()
+    if inputItemName == nil then print("\tInput item name not found : fail") end
     local inputItemModData = inputItem:getModData()
+    if inputItemModData == nil then print("\tInput item modData not found : fail") end
     local newVolumeOfItem = LSMRRMain.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
-    if not newVolumeOfItem then print("\tRecipe/Item volume not found : fail") end
+    if newVolumeOfItem == nil then print("\tRecipe/Item volume not found : fail") end
 end
 
 return LSMRRMain
