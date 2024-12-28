@@ -1,15 +1,22 @@
-local InventoryUI = require("Starlit/client/ui/InventoryUI");
+local InventoryUI = require("Starlit/client/ui/InventoryUI")
 
 local LSMRRInventoryUIListeners = {}
 
 local modDataSoundTypes = {
-    ["LSMRR_increasedSoundRadius"] = true,
-    ["LSMRR_increasedNoiseRange"] = true,
-    ["LSMRR_increasedRemoteRange"] = true,
+    ["increasedSoundRadius"] = "SoundRadius",
+    ["increasedNoiseRange"] = "NoiseRange",
+    ["increasedRemoteRange"] = "RemoteRange",
 }
+
+local soundTypeFuncs = {
+    ["SoundRadius"] = function(item) return item:getSoundRadius() end,
+    ["NoiseRange"] = function(item) return item:getNoiseRange() end,
+    ["RemoteRange"] = function(item) return item:getRemoteRange() end,
+}
+
 function LSMRRInventoryUIListeners.getModDataSoundTypes() return modDataSoundTypes end
 
-LSMRRInventoryUIListeners.shouldBeProgressBar = true
+--LSMRRInventoryUIListeners.shouldBeProgressBar = true
 
 -- store old callbacks, replace, run, then run old, then replace back to way it was
 --[[ local callback_drawItemDetails = ISInventoryPane.drawItemDetails
@@ -19,21 +26,29 @@ local callback_render = ISToolTipInv.render ]]
 --- @type Starlit.InventoryUI.Callback_OnFillItemTooltip
 function LSMRRInventoryUIListeners.CheckForModifiedRadiusItems(tooltip, layout, item)
     local modData = item:getModData()
-    if modData["LSMRR_hasModifiedVolume"] == nil then return end -- quick check
+    if not modData.LSMRR.hasModifiedVolume then return end -- quick check
     print("CheckForModifiedRadiusItems Proc")
-    
     local hasValidSoundType = false
-    for k, _ in pairs(modDataSoundTypes) do
-        if modData[k] ~= nil then -- if has one of the sound types modData identifier
+    for k, v in pairs(modDataSoundTypes) do
+        if modData.LSMRR[k] then -- if has one of the sound types modData identifier
             hasValidSoundType = true
-            local volume = modData[k]
+
+            -- modify item properties in case of game reload
+
+            -- local volume = modData[k]
             local layoutItem = layout:addItem()
             layoutItem:setLabel(getText("Tooltip_LSMRR_ItemVolume"), 1, 0.8, 0.8, 1)
             --if LSMRRInventoryUIListeners.shouldBeProgressBar == true then
                 --LSMRRInventoryUIListeners.MakeProgressBar(volume, layoutItem, tooltip, layout)
             --else
-            layoutItem:setValue(tostring(volume), 1, 1, 1, 1)
+            local soundTypeVolume
+            local soundTypeFunc = soundTypeFuncs[v]
+            if soundTypeFunc then soundTypeVolume = soundTypeFunc(item) end
+            if not soundTypeVolume then print("soundType not valid on item")return end
+            layoutItem:setValue(tostring(soundTypeVolume), 1, 1, 1, 1)
+            --layoutItem:setValueRightNoPlus(tostring(soundTypeVolumeFromItemDirectly))
             --end
+            item:setCustomName(true)
         end
     end
     if hasValidSoundType ~= true then

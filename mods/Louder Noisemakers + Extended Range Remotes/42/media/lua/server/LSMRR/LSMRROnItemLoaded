@@ -1,0 +1,8 @@
+local LSMRRMain = require "server/LSMRR/LSMRRMain"
+local LSMRREvents = require "server/LSMRR/LSMRREvents"
+
+local onItemLoaded = function (item)
+    LSMRRMain.SetItemPropertiesFromModData(item)
+end
+
+LSMRREvents.onItemLoaded:addListener(onItemLoaded)
