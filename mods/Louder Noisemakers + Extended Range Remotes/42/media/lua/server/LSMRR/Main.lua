@@ -46,6 +46,8 @@ local RecipeVolumeTable = {
 }
 
 function Main.getRecipeVolume(recipeName, scriptItemName)
+    --print("Recipe name: " .. recipeName)
+    --print("Script item name: " .. scriptItemName)
     local newVolumeOfItem;
     -- ensure recipe is valid
     local recipeTableData = RecipeVolumeTable[recipeName]
@@ -54,7 +56,7 @@ function Main.getRecipeVolume(recipeName, scriptItemName)
     newVolumeOfItem = recipeTableData["volume"]
     if newVolumeOfItem then return newVolumeOfItem end
     -- if input item for recipe has volume
-    print(recipeName)
+    
     newVolumeOfItem = recipeTableData["items"][scriptItemName]
     if newVolumeOfItem then return newVolumeOfItem end
 end
