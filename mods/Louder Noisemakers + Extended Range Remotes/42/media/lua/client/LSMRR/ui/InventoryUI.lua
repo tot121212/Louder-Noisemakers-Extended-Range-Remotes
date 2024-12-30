@@ -26,8 +26,10 @@ local function checkForModifiedRadiusItems(tooltip, layout, item)
     not modData['LSMRR'] or
     not modData['LSMRR']['hasModifiedVolume'] then
     return end
-
-    print("checkForModifiedRadiusItems Proc")
+    print("checkForModifiedRadiusItems Proc \n UI Item modData:")
+    for index, value in pairs(modData["LSMRR"]) do
+        print("Index:", index, "Value:", value)
+    end
     local hasValidSoundType = false
     for k, v in pairs(modDataSoundTypes) do
         if modData['LSMRR'][k] then -- if has one of the sound types modData identifier
@@ -48,12 +50,13 @@ local function checkForModifiedRadiusItems(tooltip, layout, item)
             soundTypeVolume = soundTypeFunc(item)
             if not soundTypeVolume then print("soundType not valid on item") return end
             layoutItem:setValue(tostring(soundTypeVolume), 1, 1, 1, 1)
+            
             --layoutItem:setValueRightNoPlus(tostring(soundTypeVolumeFromItemDirectly))
             --end
         end
     end
     if hasValidSoundType ~= true then
-        print("\tItem did not have any valid sound type")
+        print("Item did not have any valid sound type")
         return
     end
 end

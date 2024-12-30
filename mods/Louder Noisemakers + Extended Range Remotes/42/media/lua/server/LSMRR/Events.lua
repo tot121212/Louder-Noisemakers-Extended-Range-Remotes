@@ -1,64 +1,64 @@
 local globalEvents = Events
 local Events = {}
 
-local StarlitEvents = require "LSMRR/StarlitEvents"
-local StarlitAddListeners = require "LSMRR/StarlitAddListeners"
+local StarlitEvents = require "Starlit/Events"
 
--- Initialize tables to store event listeners and functions
-Events.Listeners = {}
+-- Initialize tables to store event functions
 Events.Functions = {}
 
+--- containerObj is the IsoObject(World Object) of which the InventoryItem originates
+Events.OnLoadExistingItem = StarlitEvents.new()
+---@alias LSMRR.Events.Callback_OnLoadExistingItem fun(item:InventoryItem, containerObj:IsoObject)
+
 -- Checks an individual item and processes its containers if it is an InventoryContainer
-function Events.Functions.checkItem(item)
+function Events.Functions.checkItem(item, containerObj)
     if not item then return end
     if instanceof(item, "InventoryContainer") then
         if item:getInventory() then
-            Events.Functions.checkFromContainer(item:getInventory())
+            Events.Functions.checkFromContainer(item:getInventory(), containerObj)
         elseif item:getItemContainer() then
-            Events.Functions.checkFromContainer(item:getItemContainer())
+            Events.Functions.checkFromContainer(item:getItemContainer(), containerObj)
         end
-    elseif instanceof(item, "InventoryItem") then
-        StarlitEvents.OnItemLoaded.trigger(item)
+    end
+    if instanceof(item, "InventoryItem") then
+        Events.OnLoadExistingItem:trigger(item, containerObj)
     end
 end
 
-function Events.Functions.checkFromContainer(container)
+function Events.Functions.checkFromContainer(container, containerObj)
     if not container then return end
     local containerItems = container:getItems()
     if not containerItems then return end
     for i=0, containerItems:size()-1 do
         local item = containerItems:get(i)
-        Events.Functions.checkItem(item)
+        Events.Functions.checkItem(item, containerObj)
     end
 end
 
 -- Handles checking multiple containers in an object or a single container
 function Events.Functions.checkAllPossibleContainers(containerObj)
-    if not containerObj then return end
     if containerObj:getContainerCount() and containerObj:getContainerCount() > 1 then
         -- Process multiple containers
         for containerIndex = 0, containerObj:getContainerCount() do
-            Events.Functions.checkFromContainer(containerObj:getContainerByIndex(containerIndex))
+            Events.Functions.checkFromContainer(containerObj:getContainerByIndex(containerIndex), containerObj)
         end
     else
         -- Process single container
         if containerObj:getItemContainer() then
-            Events.Functions.checkFromContainer(containerObj:getItemContainer())
+            Events.Functions.checkFromContainer(containerObj:getItemContainer(), containerObj)
         else
-            Events.Functions.checkFromContainer(containerObj:getContainer())
+            Events.Functions.checkFromContainer(containerObj:getContainer(), containerObj)
         end
     end
 end
 
 -- Processes all inventories in an inventory page, including backpacks and vehicle parts
 function Events.Functions.checkAllInventories(isInventoryPage)
-    if not isInventoryPage then return end
     local containerObj
     for i,v in ipairs(isInventoryPage.backpacks) do
         -- Check parent inventory containers
         if v.inventory:getParent() then
             containerObj = v.inventory:getParent()
-            if not containerObj then return end
             if instanceof(containerObj, "IsoObject") and
             (containerObj:getContainer() or containerObj:getItemContainer()) then
                 Events.Functions.checkAllPossibleContainers(containerObj)
@@ -88,49 +88,45 @@ local function hasGetItemMethod(obj)
     return false
 end
 
--- Checks a game world grid square for LSMRR items
-function Events.Listeners.checkGridsquareForLSMRRItems(gridSquare)
-    print("Checking square for LSMRR items")
+-- Checks a game world grid square for items
+function Events.Functions.checkGridsquareForItems(gridSquare)
     if not gridSquare then return end
     local worldObjects = gridSquare:getWorldObjects()
-    if not worldObjects then return end
     if worldObjects:size() == 0 then return end
     for i = 0, worldObjects:size() - 1 do
         local object = worldObjects:get(i)
-        if not object then return end
-        if not hasGetItemMethod(object) then return end
+        if not object and not hasGetItemMethod(object) then return end
         local item = object:getItem()
-        if not item then return end
-        Events.Functions.checkItem(item)
+        Events.Functions.checkItem(item, nil)
     end
 end
 
--- Event listener for inventory window refresh
-function Events.Listeners.checkForLSMRRItemsOnRefreshEnd(isInventoryPage, state)
-    if not isInventoryPage or state then return end
+-- Checks for inventory window refresh
+function Events.Functions.checkForItemsOnRefreshEnd(isInventoryPage, state)
     if not state == "end" then return end
-    print("Checking for LSMRR items on refresh end")
     Events.Functions.checkAllInventories(isInventoryPage)
 end
 
-function Events.Listener.checkForLSMRRItemsOnFillContainer(roomType, containerType, itemContainer)
-    if not roomType or not containerType or not itemContainer then return end
-    if itemContainer:isExplored() or itemContainer:isHasBeenLooted() then return end
-    Events.checkFromContainer(itemContainer)
+--- Checks new container when generated by server
+function Events.Functions.checkForItemsOnFillContainer(roomType, containerType, container)
+    if container:isExplored() or container:isHasBeenLooted() then return end
+    Events.Functions.checkFromContainer(container, container:getParent())
 end
 
-function Events.Listeners.onConnectedCheckPlayerForLSMRRItems(player)
-    if not player then return end
+--- Checks player inventory
+function Events.Functions.checkPlayerForItems(playerIndex, player)
+    local playerName = tostring(player:getName())
+    print("Initializing player: " .. playerName)
     local inventory = player:getInventory()
-    if not inventory then return end
-    Events.Functions.checkFromContainer(inventory)
+    if not inventory then print("No inventory found on " .. playerName) return end
+    Events.Functions.checkFromContainer(inventory, player)
 end
 
 -- Register event listeners
-globalEvents.LoadGridsquare.Add(Events.Listeners.checkGridsquareForLSMRRItems)
-globalEvents.ReuseGridsquare.Add(Events.Listeners.checkGridsquareForLSMRRItems)
-globalEvents.OnRefreshInventoryWindowContainers.Add(Events.Listeners.checkForLSMRRItemsOnRefreshEnd)
-globalEvents.OnFillContainer.Add(Events.Listeners.checkForLSMRRItemsOnFillContainer)
-globalEvents.OnConnected.Add(Events.Listeners.onConnectedCheckPlayerForLSMRRItems)
+globalEvents.LoadGridsquare.Add(Events.Functions.checkGridsquareForItems)
+globalEvents.ReuseGridsquare.Add(Events.Functions.checkGridsquareForItems)
+--globalEvents.OnRefreshInventoryWindowContainers.Add(Events.Functions.checkForItemsOnRefreshEnd)
+--globalEvents.OnFillContainer.Add(Events.Functions.checkForItemsOnFillContainer)
+--globalEvents.OnCreatePlayer.Add(Events.Functions.checkPlayerForItems)
 
 return Events

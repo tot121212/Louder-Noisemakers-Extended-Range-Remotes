@@ -1,4 +1,7 @@
 local Main = {}
+
+local Events = require "LSMRR/Events"
+
 -- Item properties are removed during crafting, so how can we modify them in a way that my modified properties are kept?
 -- When a louder item is used in crafting, convert new item into its louder counterpart, if applicable.
 
@@ -56,29 +59,32 @@ function Main.getRecipeVolume(recipeName, inputItemName)
     if newVolumeOfItem then return newVolumeOfItem end
 end
 
-function Main.SetItemPropertiesFromModData(inventoryItem)
+Main.SetItemPropertiesFromModData = function(inventoryItem, object)
+    if not inventoryItem:hasModData() then return end
     local modData = inventoryItem:getModData()
-    if not modData["LSMRR"] or
-    not modData["LSMRR"]["hasModifiedVolume"] then
-    return end
-    
+    if not modData["LSMRR"] then return end
     print("LSMRR.SetItemPropertiesFromModData")
     local wasModified = false
-    if modData["LSMRR"]["increasedSoundRadius"] then
-        inventoryItem:setSoundRadius(modData["LSMRR"]["increasedSoundRadius"])
-        print("\tSound radius: " .. inventoryItem:getSoundRadius())
-        wasModified = true
-    elseif modData["LSMRR"]["increasedNoiseRange"] then
-        inventoryItem:setNoiseRange(modData["LSMRR"]["increasedNoiseRange"])
-        print("\tNoise range: " .. inventoryItem:getNoiseRange())
-        wasModified = true
-    elseif modData["LSMRR"]["increasedRemoteRange"] then
-        inventoryItem:setRemoteRange(modData["LSMRR"]["increasedRemoteRange"])
-        print("\tRemote range: " .. inventoryItem:getRemoteRange())
-        wasModified = true
+    if modData["LSMRR"]["hasModifiedVolume"] then
+        if modData["LSMRR"]["increasedSoundRadius"] then
+            inventoryItem:setSoundRadius(modData["LSMRR"]["increasedSoundRadius"])
+            print("Updated sound radius: " .. inventoryItem:getSoundRadius())
+            wasModified = true
+        elseif modData["LSMRR"]["increasedNoiseRange"] then
+            inventoryItem:setNoiseRange(modData["LSMRR"]["increasedNoiseRange"])
+            print("Updated noise range: " .. inventoryItem:getNoiseRange())
+            wasModified = true
+        elseif modData["LSMRR"]["increasedRemoteRange"] then
+            inventoryItem:setRemoteRange(modData["LSMRR"]["increasedRemoteRange"])
+            print("Updated remote range: " .. inventoryItem:getRemoteRange())
+            wasModified = true
+        end
     end
     if wasModified then inventoryItem:setCustomName(wasModified) end
- end
+end
+
+--- add set item properties to OnLoadItem event
+Events.OnLoadExistingItem:addListener(Main.SetItemPropertiesFromModData)
 
 ---@param inputItem inventoryItem
 ---@param inputItemName string
@@ -93,13 +99,13 @@ function Main.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputI
     -- initialize soundType
     if soundType == "Radius" then
         inputItemModData["LSMRR"]["increasedSoundRadius"] = recipeVolume
-        print("\tSound radius modData: " .. recipeVolume)
+        --print("Sound radius modData: " .. recipeVolume)
     elseif soundType == "Noise" then
         inputItemModData["LSMRR"]["increasedNoiseRange"] = recipeVolume
-        print("\tNoise range modData: " .. recipeVolume)
+        --print("Noise range modData: " .. recipeVolume)
     elseif soundType == "Remote" then
         inputItemModData["LSMRR"]["increasedRemoteRange"] = recipeVolume
-        print("\tRemote range modData: " .. recipeVolume)
+        --print("Remote range modData: " .. recipeVolume)
     else return end
 
     -- fast bool tag for checking during render
@@ -107,7 +113,7 @@ function Main.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputI
     inputItemModData["LSMRR"]["recipeUsedToModify"] = recipeName
     Main.SetItemPropertiesFromModData(inputItem)
     --inputItemModData["LSMRR_nameToPrepend"] = RecipeVolumeTable[recipeName]["nameModPrep  end"]
-    if not recipeVolume then print("\tRecipe/Item volume not found : fail") return end
+    if not recipeVolume then print("Recipe/Item volume not found : fail") return end
     return recipeVolume
 end
 
@@ -118,13 +124,13 @@ end
 function Main.OnMakeLouder(craftRecipeData, character, soundType)
     print("LSMRR.OnMakeLouder")
     local recipeName = craftRecipeData:getRecipe():getName()
-    if not recipeName then print("\tRecipe name not found : fail") end
+    if not recipeName then print("Recipe name not found : fail") end
     local inputItem = craftRecipeData:getAllInputItems():get(0)
-    if not inputItem then print("\tInput item not found : fail") end
+    if not inputItem then print("Input item not found : fail") end
     local inputItemName = inputItem:getName()
-    if not inputItemName then print("\tInput item name not found : fail") end
+    if not inputItemName then print("Input item name not found : fail") end
     local inputItemModData = inputItem:getModData()
-    if not inputItemModData then print("\tInput item modData not found : fail") end
+    if not inputItemModData then print("Input item modData not found : fail") end
     local newVolumeOfItem = Main.MakeLouder(inputItem, inputItemName, recipeName, soundType, inputItemModData)
     return newVolumeOfItem
 end
