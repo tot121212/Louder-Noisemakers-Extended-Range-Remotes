@@ -1,15 +1,9 @@
 local InventoryUI = require("Starlit/client/ui/InventoryUI")
 
 local modDataSoundTypes = {
-    ["increasedSoundRadius"] = "SoundRadius",
-    ["increasedNoiseRange"] = "NoiseRange",
-    ["increasedRemoteRange"] = "RemoteRange",
-}
-
-local soundTypeFuncs = {
-    ["SoundRadius"] = function(item) return item:getSoundRadius() end,
-    ["NoiseRange"] = function(item) return item:getNoiseRange() end,
-    ["RemoteRange"] = function(item) return item:getRemoteRange() end,
+    ["hasIncreasedSoundRadius"] = function(item) return item:getSoundRadius() end,
+    ["hasIncreasedNoiseRange"] = function(item) return item:getNoiseRange() end,
+    ["hasIncreasedRemoteRange"]= function(item) return item:getRemoteRange() end,
 }
 
 --LSMRRInventoryUIListeners.shouldBeProgressBar = true
@@ -26,38 +20,21 @@ local function checkForModifiedRadiusItems(tooltip, layout, item)
     not modData['LSMRR'] or
     not modData['LSMRR']['hasModifiedVolume'] then
     return end
-    print("checkForModifiedRadiusItems Proc \n UI Item modData:")
-    for index, value in pairs(modData["LSMRR"]) do
-        print("Index:", index, "Value:", value)
-    end
-    local hasValidSoundType = false
     for k, v in pairs(modDataSoundTypes) do
-        if modData['LSMRR'][k] then -- if has one of the sound types modData identifier
-            hasValidSoundType = true
-
-            -- modify item properties in case of game reload
-
-            -- local volume = modData[k]
+        local soundTypeFunction = modData['LSMRR'][k]
+        if soundTypeFunction then
             local layoutItem = layout:addItem()
-            if not layoutItem then return end
+            if not layoutItem then print("ERROR: No layoutItem") return end
             layoutItem:setLabel(getText("Tooltip_LSMRR_ItemVolume"), 1, 0.8, 0.8, 1)
             --if LSMRRInventoryUIListeners.shouldBeProgressBar == true then
                 --LSMRRInventoryUIListeners.MakeProgressBar(volume, layoutItem, tooltip, layout)
             --else
             local soundTypeVolume
-            local soundTypeFunc = soundTypeFuncs[v]
-            if not soundTypeFunc then print("soundTypeFunc not valid") return end
-            soundTypeVolume = soundTypeFunc(item)
-            if not soundTypeVolume then print("soundType not valid on item") return end
+            soundTypeVolume = soundTypeFunction(item)
+            if not soundTypeVolume then print("ERROR: No soundTypeVolume found") return end
             layoutItem:setValue(tostring(soundTypeVolume), 1, 1, 1, 1)
-            
-            --layoutItem:setValueRightNoPlus(tostring(soundTypeVolumeFromItemDirectly))
-            --end
+            return
         end
-    end
-    if hasValidSoundType ~= true then
-        print("Item did not have any valid sound type")
-        return
     end
 end
 
