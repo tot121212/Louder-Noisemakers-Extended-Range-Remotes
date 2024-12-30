@@ -1,7 +1,8 @@
+--- ProceduralDistributions should be the only one used, generally
 local defaultTable = ProceduralDistributions
 
---- The pass by ref data for default literature chance
-local defaultLiteratureChances = {
+--- Default distributions for electronics magazines
+local defaultElectronicsLiteratureChances = {
 --- ["DistributionName"] = ItemDistributionChance
     ["ArmyStorageElectronics"]      = 1,
     ["BookstoreMisc"]               = 2,
@@ -28,7 +29,9 @@ local defaultLiteratureChances = {
     ["ToolStoreBooks"]              = 2,
     ["UniversityLibraryMagazines"]  = 1,
 }
+--- If you wanted to make your own custom literature table, you would just copy the structure above.
 
+--- Can ignore, just a little helper function that is used for modifying a tables values via an operation.
 ---@param inputLiteratureChances table
 ---@param resultCallable function
 local function modLiteratureTable(inputLiteratureChances, resultCallable)
@@ -39,28 +42,31 @@ local function modLiteratureTable(inputLiteratureChances, resultCallable)
     return literatureTable
 end
 
+--- Each literature has its own table with the distributions and the chances for that item to spawn in said distributions.
 local literatureNamesWithChances = {
-    ["LSMRRExtendedRangeRemoteMag"] = defaultLiteratureChances,
-    ["LSMRRModulatedNoiseMakerMag"] = defaultLiteratureChances,
-    ["LSMRRAddAmplifierSchematic"] = modLiteratureTable(defaultLiteratureChances, function(a) return (a/2) end),
+    ["LSMRRExtendedRangeRemoteMag"] = defaultElectronicsLiteratureChances,
+    ["LSMRRModulatedNoiseMakerMag"] = defaultElectronicsLiteratureChances,
+    ["LSMRRAddAmplifierSchematic"] = modLiteratureTable(defaultElectronicsLiteratureChances, function(a) return (a/2) end),
 }
 
+--- Module that the literature originates.
 local literatureModuleName = "LSMRR";
 
---- Iterate items and item_names and add to _table with module_name prepended
---- Should make a seperate list with the distributions but... :D
---- 
+
+--- Iterate chanceForItem and add to _table
+---
 ---@param items table
 ---@param moduleName string
 ---@param _table DistributionsTable
 local function iterateItemsIntoTable(items, moduleName, _table)
     for itemName, v in pairs(items) do
         for distribution, chanceForItem in pairs(items[itemName]) do
+            --- add module.item to table
             table.insert(_table["list"][distribution].items, moduleName .. "." .. itemName)
             table.insert(_table["list"][distribution].items, chanceForItem)
         end
     end
 end
 
---- Add literature to default_table
+--- Add literature to defaultTable
 iterateItemsIntoTable(literatureNamesWithChances, literatureModuleName, defaultTable)
