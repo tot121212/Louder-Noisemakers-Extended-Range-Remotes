@@ -1,27 +1,29 @@
-##version=1.1
-#title=Louder Noisemakers + Extended Range Remotes
-##description=This mod adds louder versions of Digital Watches, Alarm Clocks, Noisemakers, and Extends the range of Remote Controllers.
+[h1]For Build 42, 41[/h1]
+[h2]Adds recipes for modifying sound radius, noise range, and remote range to specified items below, with sandbox options for custom values.[/h2]
 
-I learned to program, so let's update this mod for B42 Unstable!
-
-This mod should theoretically be compatible with anything due to item modifications being done directly, as opposed to creating new ones.
-
-I play with "Insane" zombie population so these items are a must for being able to move hordes around.
-
-"Wrist Watch" no longer have a louder alarm variant.
-"Digtal Watch" are craftable by default.
-"Alarm Clock" and "Noise Maker" require the [i]Make Some Noise~!: Mod Your Stereo[/i] magazine.
-"Extended Range Remote Controller" require the [i]Crank It Up: TV Remote Modding Guide[/i] magazine.
-
-These magazines can be found in any area that has electrical magazines at the same rarity.
-
-Ranges:
+[h3]Modifiable Items[/h3]
 [list]
-[*]Digital Watch - 25 tiles
-[*]Alarm Clock - 50 tiles
-[*]Noise Maker - 150 tiles (This includes the Timer, Sensor, and Remote versions)
-[*]Extended Range Remote Controllers - 28 tiles, 44 tiles, 60 tiles
-[list]
+[*]Digital Watch
+[*]Alarm Clock
+[*]Noise Maker (This includes the Timer, Sensor, and Remote versions)
+[*]Remote Controller [list][*]V1 [*]V2 [*]V3[/list]
+[/list]
 
-###Workshop ID: 2909916834
-###Mod ID: LSMRR
+[h3]Recipes[/h3]
+The watches are craftable by default.
+Alarm Clocks and Soundmakers: [i]Make Some Noise~!: Mod Your Stereo[/i] Magazine.
+Extended Range Remotes: [i]Crank It Up: TV Remote Modding Guide[/i] Magazine.
+
+The magazines can be found in any container that normally spawns Electrical Magazines.
+
+[spoiler]Amplified Noise Makers: [i]Noise Amplification of Remote Electrical Devices: Documentation[/i]
+
+The schematic spawns with half the frequency of the others[/spoiler]
+
+[quote=Totsnuk]This mod does not overwrite/copy any existing item recipes. 
+The recipes directly modify the item itself and the game loads the modData properties via Lua Events.[/quote]
+
+[h1]Use the discussion pages, people...[/h1]
+
+[h3]Workshop ID: 2909916834
+Mod ID: LSMRR[/h3]
