@@ -1,7 +1,8 @@
-version=2.0
+version=1
 id=2909916834
 title=Louder Noisemakers + Extended Range Remotes
-description=[h1]For Build 42, 41[/h1]
+description=[h1]For Builds [list][*]42[*]41[/list][/h1]
+description=
 description=[h2]Adds recipes for modifying sound radius, noise range, and remote range to specified items below, with sandbox options for custom values.[/h2]
 description=
 description=[h3]Modifiable Items[/h3]
@@ -23,12 +24,12 @@ description=[spoiler]Amplified Noise Makers: [i]Noise Amplification of Remote El
 description=
 description=The schematic spawns with half the frequency of the others[/spoiler]
 description=
-description=[quote=Totsnuk]This mod does not overwrite/copy any existing item recipes. 
+description=[quote=Totsnuk]This mod does not overwrite/copy any existing item recipes.
 description=The recipes directly modify the item itself and the game loads the modData properties via Lua Events.[/quote]
 description=
 description=[h1]Use the discussion pages, people...[/h1]
 description=
 description=[h3]Workshop ID: 2909916834
 description=Mod ID: LSMRR[/h3]
-tags=Build 42;Build 41;Items;Audio;Balance;Multiplayer;Qol;Realistic
+tags=Build 41;Build 42;Audio;Balance;Items;Multiplayer;Realistic
 visibility=public
