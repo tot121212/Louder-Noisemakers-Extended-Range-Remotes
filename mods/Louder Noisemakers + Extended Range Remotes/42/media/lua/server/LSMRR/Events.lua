@@ -2,6 +2,7 @@ local globalEvents = Events
 local Events = {}
 
 local StarlitEvents = require "LSMRR/StarlitEvents"
+local StarlitAddListeners = require "LSMRR/StarlitAddListeners"
 
 -- Initialize tables to store event listeners and functions
 Events.Listeners = {}
