@@ -1,7 +1,7 @@
-local default_table = ProceduralDistributions
+local defaultTable = ProceduralDistributions
 
 --- The pass by ref data for default literature chance
-local default_literature_chances = {
+local defaultLiteratureChances = {
 --- ["DistributionName"] = ItemDistributionChance
     ["ArmyStorageElectronics"]      = 1,
     ["BookstoreMisc"]               = 2,
@@ -29,38 +29,38 @@ local default_literature_chances = {
     ["UniversityLibraryMagazines"]  = 1,
 }
 
----@param input_lit_chances table
+---@param inputLiteratureChances table
 ---@param resultCallable function
-local function mod_literature_table(input_lit_chances, resultCallable)
-    local literature_table = {}
-    for item_name, chance in pairs(input_lit_chances) do
-        literature_table[item_name] = tonumber(string.format("%.2f", resultCallable(chance)))
+local function modLiteratureTable(inputLiteratureChances, resultCallable)
+    local literatureTable = {}
+    for item_name, chance in pairs(inputLiteratureChances) do
+        literatureTable[item_name] = tonumber(string.format("%.2f", resultCallable(chance)))
     end
-    return literature_table
+    return literatureTable
 end
 
-local literature_names_with_chances = {
-    ["LSMRRExtendedRangeRemoteMag"] = default_literature_chances,
-    ["LSMRRModulatedNoiseMakerMag"] = default_literature_chances,
-    ["LSMRRAddAmplifierSchematic"] = mod_literature_table(default_literature_chances, function(a) return (a/2) end),
+local literatureNamesWithChances = {
+    ["LSMRRExtendedRangeRemoteMag"] = defaultLiteratureChances,
+    ["LSMRRModulatedNoiseMakerMag"] = defaultLiteratureChances,
+    ["LSMRRAddAmplifierSchematic"] = modLiteratureTable(defaultLiteratureChances, function(a) return (a/2) end),
 }
 
-local literature_module_name = "LSMRR";
+local literatureModuleName = "LSMRR";
 
 --- Iterate items and item_names and add to _table with module_name prepended
 --- Should make a seperate list with the distributions but... :D
 --- 
 ---@param items table
----@param module_name string
+---@param moduleName string
 ---@param _table DistributionsTable
-local function iterate_items_into_table(items, module_name, _table)
-    for item_name, _ in pairs(items) do
-        for distribution, chance_for_item in pairs(items[item_name]) do
-            table.insert(_table["list"][distribution].items, module_name .. "." .. item_name)
-            table.insert(_table["list"][distribution].items, chance_for_item)
+local function iterateItemsIntoTable(items, moduleName, _table)
+    for itemName, v in pairs(items) do
+        for distribution, chanceForItem in pairs(items[itemName]) do
+            table.insert(_table["list"][distribution].items, moduleName .. "." .. itemName)
+            table.insert(_table["list"][distribution].items, chanceForItem)
         end
     end
 end
 
 --- Add literature to default_table
-iterate_items_into_table(literature_names_with_chances, literature_module_name, default_table)
+iterateItemsIntoTable(literatureNamesWithChances, literatureModuleName, defaultTable)
