@@ -59,8 +59,8 @@ local literatureModuleName = "LSMRR";
 ---@param moduleName string
 ---@param _table DistributionsTable
 local function iterateItemsIntoTable(items, moduleName, _table)
-    for itemName, v in pairs(items) do
-        for distribution, chanceForItem in pairs(items[itemName]) do
+    for itemName, itemChanceTable in pairs(items) do
+        for distribution, chanceForItem in pairs(itemChanceTable) do
             --- add module.item to table
             table.insert(_table["list"][distribution].items, moduleName .. "." .. itemName)
             table.insert(_table["list"][distribution].items, chanceForItem)
