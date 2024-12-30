@@ -14,7 +14,7 @@ module LSMRR
         Icon             = MagazineElectronics01,
         BoredomChange    = -10,
         StressChange     = -15,
-        TeachedRecipes   = LSMRRModifyRangeOfRemoteController,
+        TeachedRecipes   = LSMRRExtendRangeOfRemoteController,
         StaticModel      = Magazine,
         WorldStaticModel = MagazineElec1Ground,
         Tags = Magazine,

@@ -115,6 +115,7 @@ end
 
 --- Checks player inventory
 function Events.Functions.checkPlayerForItems(playerIndex, player)
+    if not instanceof(player, "IsoPlayer") or instanceof(player, "IsoAnimal") then return end
     local playerName = tostring(player:getName())
     print("Initializing player: " .. playerName)
     local inventory = player:getInventory()
@@ -125,8 +126,8 @@ end
 -- Register event listeners
 globalEvents.LoadGridsquare.Add(Events.Functions.checkGridsquareForItems)
 globalEvents.ReuseGridsquare.Add(Events.Functions.checkGridsquareForItems)
---globalEvents.OnRefreshInventoryWindowContainers.Add(Events.Functions.checkForItemsOnRefreshEnd)
---globalEvents.OnFillContainer.Add(Events.Functions.checkForItemsOnFillContainer)
---globalEvents.OnCreatePlayer.Add(Events.Functions.checkPlayerForItems)
+globalEvents.OnRefreshInventoryWindowContainers.Add(Events.Functions.checkForItemsOnRefreshEnd)
+globalEvents.OnFillContainer.Add(Events.Functions.checkForItemsOnFillContainer)
+globalEvents.OnCreatePlayer.Add(Events.Functions.checkPlayerForItems)
 
 return Events
