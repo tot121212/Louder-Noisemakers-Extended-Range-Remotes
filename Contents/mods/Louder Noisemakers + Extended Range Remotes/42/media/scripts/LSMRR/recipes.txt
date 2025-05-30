@@ -12,7 +12,7 @@ module LSMRR
         Tags          = InHandCraft;Electrical,
         category      = Electrical,
         SkillRequired = Electricity:1,
-        AutoLearn     = Electricity:3,
+        AutoLearnAny  = Electricity:3,
         OnCreate      = Recipe.OnCreate.LSMRRBoostWatchVolume,
         inputs
         {
@@ -32,7 +32,7 @@ module LSMRR
         category      = Electrical,
         NeedToBeLearn = True,
         SkillRequired = Electricity:1;Maintenance:1,
-        AutoLearn     = Electricity:3,
+        AutoLearnAny  = Electricity:3,
         OnCreate      = Recipe.OnCreate.LSMRRAdjustGearsOnAlarmClock,
         inputs
         {
@@ -52,7 +52,7 @@ module LSMRR
         category      = Electrical,
         NeedToBeLearn = True,
         SkillRequired = Electricity:2,
-        AutoLearn     = Electricity:4,
+        AutoLearnAny  = Electricity:4,
         OnCreate      = Recipe.OnCreate.LSMRRModulateNoiseMakerVolume,
         inputs
         {
@@ -72,7 +72,7 @@ module LSMRR
         category      = Electrical,
         NeedToBeLearn = True,
         SkillRequired = Electricity:3;Maintenance:1,
-        AutoLearn     = Electricity:5,
+        AutoLearnAny  = Electricity:5,
         OnCreate      = Recipe.OnCreate.LSMRRExtendRangeOfRemoteController,
         inputs
         {
