@@ -3,7 +3,7 @@
 
 --- It may be that when you have an item favorited it saves the modData, meaning it would save the louder sound range, will have to test
 
-function SetSoundRadius(item)
+local function SetSoundRadius(item)
     local itemName = item:getName();
     if string.find(itemName, "Digital") and string.find(itemName, "Watch") then
         item:setSoundRadius(25);
@@ -18,7 +18,7 @@ function SetSoundRadius(item)
     return false;
 end
 
-function SetRemoteRadius(item)
+local function SetRemoteRadius(item)
     local itemName = item:getName();
     if string.find(itemName, "Remote") and string.find(itemName, "Controller") then
         if string.find(itemName, "V1") then
@@ -37,11 +37,12 @@ end
 
 --- dont need to test for modData bc the func for it already has a case for that
 
-local Recipe = Recipe;
+local Recipe = Recipe or {};
+Recipe.OnCreate = Recipe.OnCreate or {};
 
 local louderStr = "(Louder)";
 
-function Recipe.OnCreate.LSMRR_MakeLouder(craftRecipeData, _)
+Recipe.OnCreate.LSMRR_MakeLouder = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
 
     local modData = inventoryItem:getModData();
@@ -58,7 +59,7 @@ end
 
 local erStr = "Extended Range";
 
-function Recipe.OnCreate.LSMRR_MakeRangeHigher(craftRecipeData, _)
+Recipe.OnCreate.LSMRR_MakeRangeHigher = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
 
     local modData = inventoryItem:getModData();
