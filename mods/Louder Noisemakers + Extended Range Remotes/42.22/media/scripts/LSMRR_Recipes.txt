@@ -10,7 +10,7 @@ module LSMRR_Recipes {
         Tags          = InHandCraft,
         category      = Electrical,
         AutoLearnAny  = Electricity:1,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
             item 1 [Base.WristWatch_Right_DigitalBlack;Base.WristWatch_Left_DigitalBlack;Base.WristWatch_Right_DigitalRed;Base.WristWatch_Left_DigitalRed;WristWatch_Right_DigitalDress;WristWatch_Left_DigitalDress] mode:keep flags[Prop2],
@@ -25,7 +25,7 @@ module LSMRR_Recipes {
         Tags          = InHandCraft,
         category      = Electrical,
         AutoLearnAny  = Electricity:1,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs { 
             item 1 [Base.AlarmClock2] mode:keep flags[Prop2],
             item 1 tags[Screwdriver] mode:keep flags[Prop1],
@@ -40,7 +40,7 @@ module LSMRR_Recipes {
         category      = Electrical,
         SkillRequired = Electricity:2,
         AutoLearnAny  = Electricity:6,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeLouder",
+        OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
             item 1 [NoiseTrap;NoiseTrapRemote;NoiseTrapSensorV1;NoiseTrapSensorV2;NoiseTrapSensorV3;NoiseTrapTriggered;] mode:keep flags[Prop2],
@@ -58,7 +58,7 @@ module LSMRR_Recipes {
         category      = Electrical,
         AutoLearnAny  = Electricity:6,
         xpAward       = Electricity:10,
-        OnCreate      = "Recipe.OnCreate.LSMRR_MakeRangeHigher",
+        OnCreate      = LSMRR.OnCreate.LSMRR_MakeRangeHigher,
         inputs 
         {
             item 1 [Base.RemoteCraftedV1;Base.RemoteCraftedV2;Base.RemoteCraftedV3;] mode:keep flags[Prop2],

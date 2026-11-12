@@ -37,12 +37,12 @@ end
 
 --- dont need to test for modData bc the func for it already has a case for that
 
-local Recipe = Recipe or {};
-Recipe.OnCreate = Recipe.OnCreate or {};
+LSMRR = LSMRR or {};
+LSMRR.OnCreate = LSMRR.OnCreate or {};
 
 local louderStr = "(Louder)";
 
-Recipe.OnCreate.LSMRR_MakeLouder = function(craftRecipeData, _)
+LSMRR.OnCreate.LSMRR_MakeLouder = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
 
     local modData = inventoryItem:getModData();
@@ -59,7 +59,7 @@ end
 
 local erStr = "Extended Range";
 
-Recipe.OnCreate.LSMRR_MakeRangeHigher = function(craftRecipeData, _)
+LSMRR.OnCreate.LSMRR_MakeRangeHigher = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
 
     local modData = inventoryItem:getModData();

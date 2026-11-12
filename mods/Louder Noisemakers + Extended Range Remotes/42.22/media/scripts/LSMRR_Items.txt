@@ -6,7 +6,7 @@ module LouderSoundmakers_Items {
 	/************************ LOUDER Watches ************************/
 	item WristWatch_Right_ClassicBlack_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Classic Wrist Watch with Black Strap,
 		ClothingItem           = WristWatch_Right_ClassicBlack,
 		BodyLocation           = RightWrist,
@@ -24,7 +24,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_ClassicBlack_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Classic Wrist Watch with Black Strap,
 		ClothingItem           = WristWatch_Left_ClassicBlack,
 		BodyLocation           = LeftWrist,
@@ -42,7 +42,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_ClassicBrown_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Classic Wrist Watch with Brown Strap,
 		ClothingItem           = WristWatch_Right_ClassicBrown,
 		BodyLocation           = RightWrist,
@@ -60,7 +60,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_ClassicBrown_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Classic Wrist Watch with Brown Strap,
 		ClothingItem           = WristWatch_Left_ClassicBrown,
 		BodyLocation           = LeftWrist,
@@ -78,7 +78,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_ClassicMilitary_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Standard Military Issue Wrist Watch,
 		ClothingItem           = WristWatch_Right_ClassicMilitary,
 		BodyLocation           = RightWrist,
@@ -96,7 +96,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_ClassicMilitary_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Standard Military Issue Wrist Watch,
 		ClothingItem           = WristWatch_Left_ClassicMilitary,
 		BodyLocation           = LeftWrist,
@@ -114,7 +114,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_ClassicGold_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Gold Wrist Watch,
 		ClothingItem           = WristWatch_Right_ClassicGold,
 		BodyLocation           = RightWrist,
@@ -132,7 +132,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_ClassicGold_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Gold Wrist Watch,
 		ClothingItem           = WristWatch_Left_ClassicGold,
 		BodyLocation           = LeftWrist,
@@ -150,7 +150,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_DigitalBlack_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Black Digital Watch,
 		ClothingItem           = WristWatch_Right_DigitalBlack,
 		BodyLocation           = RightWrist,
@@ -169,7 +169,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_DigitalBlack_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Black Digital Watch,
 		ClothingItem           = WristWatch_Left_DigitalBlack,
 		BodyLocation           = LeftWrist,
@@ -188,7 +188,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_DigitalRed_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Red Digital Watch,
 		ClothingItem           = WristWatch_Right_DigitalRed,
 		BodyLocation           = RightWrist,
@@ -207,7 +207,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_DigitalRed_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Red Digital Watch,
 		ClothingItem           = WristWatch_Left_DigitalRed,
 		BodyLocation           = LeftWrist,
@@ -226,7 +226,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Right_DigitalDress_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Metallic Dress Style Digital Watch,
 		ClothingItem           = WristWatch_Right_DigitalDress,
 		BodyLocation           = RightWrist,
@@ -245,7 +245,7 @@ module LouderSoundmakers_Items {
 
 	item WristWatch_Left_DigitalDress_LOUDER_Tot {
 		DisplayCategory        = Accessory,
-		Type                   = AlarmClockClothing,
+		ItemType               = base:alarmclockclothing,
 		DisplayName            = LOUDER Metallic Dress Style Digital Watch,
 		ClothingItem           = WristWatch_Left_DigitalDress,
 		BodyLocation           = LeftWrist,
@@ -265,7 +265,7 @@ module LouderSoundmakers_Items {
 	/************************ LOUDER Alarm Clocks ************************/
 	item AlarmClock2_LOUDER_Tot {
 		DisplayCategory        = Household,
-		Type                   = AlarmClock,
+		ItemType               = base:alarmclock,
 		DisplayName            = LOUDER Alarm Clock,
 		Weight                 = 0.5,
 		Icon                   = AlarmClock,
@@ -279,7 +279,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrap_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -306,7 +306,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrapTriggered_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -332,7 +332,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrapSensorV1_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -359,7 +359,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrapSensorV2_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -386,7 +386,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrapSensorV3_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -413,7 +413,7 @@ module LouderSoundmakers_Items {
 	item NoiseTrapRemote_LOUDER_Tot {
 		DisplayCategory        = Explosives,
 		MaxRange               = 10,
-		Type                   = Weapon,
+		ItemType               = base:weapon,
 		MinimumSwingTime       = 1.5,
 		SwingAnim              = Throw,
 		WeaponSprite           = Molotov,
@@ -440,7 +440,7 @@ module LouderSoundmakers_Items {
 	item RemoteCraftedV1_LOUDER_Tot {
 		DisplayCategory        = Electronics,
 		Weight                 = 0.4,
-		Type                   = Normal,
+		ItemType               = base:normal,
 		DisplayName            = 4X Range V1 Remote Controller,
 		Icon                   = RemoteCrafted,
 		RemoteController       = TRUE,
@@ -453,7 +453,7 @@ module LouderSoundmakers_Items {
 	item RemoteCraftedV2_LOUDER_Tot {
 		DisplayCategory        = Electronics,
 		Weight                 = 0.4,
-		Type                   = Normal,
+		ItemType               = base:normal,
 		DisplayName            = 4X Range V2 Remote Controller,
 		Icon                   = RemoteCrafted,
 		RemoteController       = TRUE,
@@ -466,7 +466,7 @@ module LouderSoundmakers_Items {
 	item RemoteCraftedV3_LOUDER_Tot {
 		DisplayCategory        = Electronics,
 		Weight                 = 0.4,
-		Type                   = Normal,
+		ItemType               = base:normal,
 		DisplayName            = 4X Range V3 Remote Controller,
 		Icon                   = RemoteCrafted,
 		RemoteController       = TRUE,
