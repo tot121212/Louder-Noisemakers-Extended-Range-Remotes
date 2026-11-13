@@ -9,6 +9,7 @@ module LSMRR_Recipes {
         Time          = 5,
         Tags          = InHandCraft,
         category      = Electrical,
+        NeedToBeLearn = true,
         AutoLearnAny  = Electricity:1,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs 
@@ -24,6 +25,7 @@ module LSMRR_Recipes {
         Time          = 20,
         Tags          = InHandCraft,
         category      = Electrical,
+        NeedToBeLearn = true,
         SkillRequired = Electricity:2,
         AutoLearnAny  = Electricity:4,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
@@ -39,6 +41,7 @@ module LSMRR_Recipes {
         Time          = 50,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
+        NeedToBeLearn = true,
         SkillRequired = Electricity:3,
         AutoLearnAny  = Electricity:6,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
@@ -53,7 +56,7 @@ module LSMRR_Recipes {
     {
         timedAction   = MakingElectrical,
         Time          = 100,
-        NeedToBeLearn = True,
+        NeedToBeLearn = true,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
         SkillRequired = Electricity:3,
