@@ -39,7 +39,7 @@ module LSMRR_Recipes {
         Tags          = AnySurfaceCraft,
         category      = Electrical,
         SkillRequired = Electricity:2,
-        AutoLearnAny  = Electricity:6,
+        AutoLearnAny  = Electricity:4,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
@@ -56,7 +56,7 @@ module LSMRR_Recipes {
         SkillRequired = Electricity:2,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
-        AutoLearnAny  = Electricity:6,
+        AutoLearnAny  = Electricity:4,
         xpAward       = Electricity:10,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeRangeHigher,
         inputs 
