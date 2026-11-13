@@ -4,6 +4,15 @@ local SoundRange = {
     NoiseMaker = 150,
 }
 
+local RemoteRange = {
+    V1 = 50,
+    V2 = 75,
+    V3 = 100,
+}
+
+local louderStr = "(Louder)";
+local erStr = "Extended Range";
+
 local SoundItemTypes = {}
 
 local function RegisterSoundItemType(baseType, louderType, radius, modDataKey, tooltip)
@@ -54,14 +63,6 @@ for _, itemType in ipairs({
         "Tooltip_LSMRR_NoiseRange"
     )
 end
-
-local RemoteRange = {
-    V1 = 50,
-    V2 = 75,
-    V3 = 100,
-}
-
-local louderStr = "(Louder)";
 
 local function ApplySoundItemSettings(item, settings)
     if item:getFullType() ~= settings.louderType then
@@ -236,18 +237,16 @@ Events.LoadGridsquare.Add(RestoreSquareRadii);
 
 LSMRR.OnCreate.LSMRR_MakeLouder = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
-    local itemName = inventoryItem:getName();
 
     SetSoundRadius(inventoryItem);
 
     inventoryItem:setCustomName(true);
 
-    if string.find(itemName, louderStr) == nil then
+    local itemName = inventoryItem:getName();
+    if string.find(itemName, louderStr, 1, true) == nil then
         inventoryItem:setName(itemName .. " " .. louderStr);
     end
 end
-
-local erStr = "Extended Range";
 
 LSMRR.OnCreate.LSMRR_MakeRangeHigher = function(craftRecipeData, _)
     local inventoryItem = craftRecipeData:getAllKeepInputItems():get(0);
