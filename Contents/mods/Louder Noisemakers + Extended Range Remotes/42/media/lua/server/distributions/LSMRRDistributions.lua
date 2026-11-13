@@ -11,9 +11,11 @@ local default_literature_chances = {
     ["EngineerTools"]               = 2,
     ["LibraryBooks"]                = 1,
     ["LivingRoomShelf"]             = 0.1,
-    ["LivingRoomShelfNoTapes"]      = 0.1,
+    ["LivingRoomShelfClassy"]       = 0.1,
+    ["LivingRoomShelfRedneck"]      = 0.1,
     ["LivingRoomSideTable"]         = 0.1,
-    ["LivingRoomSideTableNoRemote"] = 0.1,
+    ["LivingRoomSideTableClassy"]   = 0.1,
+    ["LivingRoomSideTableRedneck"]  = 0.1,
     ["MagazineRackMixed"]           = 1,
     ["PostOfficeMagazines"]         = 1,
     ["ShelfGeneric"]                = 0.1,
@@ -25,7 +27,7 @@ local literature_names_with_chances = {
     ["LSMRR_NoiseMaker_Mag"] = default_literature_chances
 }
 
-local literature_module_name = "LouderSoundmakers_Items_Literature";
+local literature_module_name = "LSMRR_Items_Literature.";
 
 --- Iterate items and item_names and add to _table with module_name prepended
 --- Should make a seperate list with the distributions but... :D
