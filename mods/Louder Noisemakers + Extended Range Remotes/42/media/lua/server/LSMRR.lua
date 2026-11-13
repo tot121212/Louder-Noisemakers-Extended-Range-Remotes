@@ -15,10 +15,11 @@ local erStr = "Extended Range";
 
 local SoundItemTypes = {}
 
-local function RegisterSoundItemType(baseType, louderType, radius, modDataKey, tooltip)
+local function RegisterSoundItemType(baseType, louderType, radius, sandboxOption, modDataKey, tooltip)
     local settings = {
         louderType = louderType,
         radius = radius,
+        sandboxOption = sandboxOption,
         modDataKey = modDataKey,
         tooltip = tooltip,
     }
@@ -33,6 +34,7 @@ for _, watch in ipairs({"Black", "Red", "Dress"}) do
             "Base." .. itemType,
             "LouderSoundmakers_Items." .. itemType .. "_LOUDER_Tot",
             SoundRange.DigitalWatch,
+            "WatchSoundRadius",
             "LSMRR_SoundRadius",
             "Tooltip_LSMRR_SoundRadius"
         )
@@ -43,6 +45,7 @@ RegisterSoundItemType(
     "Base.AlarmClock2",
     "LouderSoundmakers_Items.AlarmClock2_LOUDER_Tot",
     SoundRange.AlarmClock,
+    "AlarmClockSoundRadius",
     "LSMRR_SoundRadius",
     "Tooltip_LSMRR_SoundRadius"
 )
@@ -59,12 +62,16 @@ for _, itemType in ipairs({
         "Base." .. itemType,
         "LouderSoundmakers_Items." .. itemType .. "_LOUDER_Tot",
         SoundRange.NoiseMaker,
+        "NoiseMakerSoundRadius",
         "LSMRR_NoiseRange",
         "Tooltip_LSMRR_NoiseRange"
     )
 end
 
 local function ApplySoundItemSettings(item, settings)
+    local sandboxOptions = SandboxVars and SandboxVars.LSMRR
+    local radius = sandboxOptions and sandboxOptions[settings.sandboxOption] or settings.radius
+
     if item:getFullType() ~= settings.louderType then
         local scriptItem = ScriptManager.instance:FindItem(settings.louderType)
         if not scriptItem then
@@ -76,12 +83,12 @@ local function ApplySoundItemSettings(item, settings)
         item:setRegistry_id(scriptItem)
     end
 
-    item:getModData()[settings.modDataKey] = settings.radius
+    item:getModData()[settings.modDataKey] = radius
     if settings.modDataKey == "LSMRR_SoundRadius" then
-        item:setSoundRadius(settings.radius)
+        item:setSoundRadius(radius)
         item:setTooltip(getText(settings.tooltip, tostring(item:getSoundRadius())))
     else
-        item:setNoiseRange(settings.radius)
+        item:setNoiseRange(radius)
         item:setTooltip(getText(settings.tooltip, tostring(item:getNoiseRange())))
     end
 end
@@ -92,6 +99,32 @@ local function SetSoundRadius(item)
         return false
     end
     ApplySoundItemSettings(item, settings)
+    return true
+end
+
+local function SetRemoteRadius(item)
+    local itemName = item:getName()
+    if not string.find(itemName, "Remote") or not string.find(itemName, "Controller") then
+        return false
+    end
+
+    local sandboxOptions = SandboxVars and SandboxVars.LSMRR
+    local function getRange(version)
+        local option = "RemoteController" .. version .. "Range"
+        return sandboxOptions and sandboxOptions[option] or RemoteRange[version]
+    end
+
+    if string.find(itemName, "V1") then
+        item:setRemoteRange(getRange("V1"))
+    elseif string.find(itemName, "V2") then
+        item:setRemoteRange(getRange("V2"))
+    elseif string.find(itemName, "V3") then
+        item:setRemoteRange(getRange("V3"))
+    else
+        return false
+    end
+
+    item:setTooltip(getText("Tooltip_LSMRR_RemoteRange", tostring(item:getRemoteRange())))
     return true
 end
 
@@ -119,6 +152,9 @@ RestoreItemRadii = function(item)
         if wasCustomized then
             ApplySoundItemSettings(item, settings)
         end
+    end
+    if string.find(item:getName(), erStr, 1, true) then
+        SetRemoteRadius(item)
     end
 
     if instanceof(item, "InventoryContainer") then
@@ -206,26 +242,6 @@ local function RestoreNewPlayerRadii(player)
     if player and not restoredPlayers[player] then
         RestorePlayerRadii(player)
     end
-end
-
-local function SetRemoteRadius(item)
-    local itemName = item:getName();
-    if string.find(itemName, "Remote") and string.find(itemName, "Controller") then
-        if string.find(itemName, "V1") then
-            item:setRemoteRange(RemoteRange.V1);
-            item:setTooltip(getText("Tooltip_LSMRR_RemoteRange", tostring(item:getRemoteRange())));
-            return true;
-        elseif string.find(itemName, "V2") then
-            item:setRemoteRange(RemoteRange.V2);
-            item:setTooltip(getText("Tooltip_LSMRR_RemoteRange", tostring(item:getRemoteRange())));
-            return true;
-        elseif string.find(itemName, "V3") then
-            item:setRemoteRange(RemoteRange.V3);
-            item:setTooltip(getText("Tooltip_LSMRR_RemoteRange", tostring(item:getRemoteRange())));
-            return true;
-        end
-    end
-    return false;
 end
 
 LSMRR = LSMRR or {};

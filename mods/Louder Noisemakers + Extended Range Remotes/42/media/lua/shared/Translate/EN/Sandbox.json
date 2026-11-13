@@ -1,0 +1,15 @@
+{
+    "Sandbox_LSMRR": "Louder Noisemakers and Extended Range Remotes",
+    "Sandbox_LSMRR_WatchSoundRadius": "Digital Watch Sound Radius",
+    "Sandbox_LSMRR_WatchSoundRadius_tooltip": "Sound radius for upgraded digital watches, in tiles.",
+    "Sandbox_LSMRR_AlarmClockSoundRadius": "Alarm Clock Sound Radius",
+    "Sandbox_LSMRR_AlarmClockSoundRadius_tooltip": "Sound radius for upgraded alarm clocks, in tiles.",
+    "Sandbox_LSMRR_NoiseMakerSoundRadius": "Noisemaker Sound Radius",
+    "Sandbox_LSMRR_NoiseMakerSoundRadius_tooltip": "Sound radius for upgraded noisemakers, in tiles.",
+    "Sandbox_LSMRR_RemoteControllerV1Range": "Remote Controller V1 Range",
+    "Sandbox_LSMRR_RemoteControllerV1Range_tooltip": "Range for upgraded V1 remote controllers, in tiles.",
+    "Sandbox_LSMRR_RemoteControllerV2Range": "Remote Controller V2 Range",
+    "Sandbox_LSMRR_RemoteControllerV2Range_tooltip": "Range for upgraded V2 remote controllers, in tiles.",
+    "Sandbox_LSMRR_RemoteControllerV3Range": "Remote Controller V3 Range",
+    "Sandbox_LSMRR_RemoteControllerV3Range_tooltip": "Range for upgraded V3 remote controllers, in tiles."
+}

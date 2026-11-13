@@ -1,0 +1,25 @@
+VERSION = 1,
+
+option LSMRR.WatchSoundRadius = {
+    type = integer, min = 0, max = 1000, default = 25, page = LSMRR, translation = LSMRR_WatchSoundRadius,
+}
+
+option LSMRR.AlarmClockSoundRadius = {
+    type = integer, min = 0, max = 1000, default = 50, page = LSMRR, translation = LSMRR_AlarmClockSoundRadius,
+}
+
+option LSMRR.NoiseMakerSoundRadius = {
+    type = integer, min = 0, max = 1000, default = 150, page = LSMRR, translation = LSMRR_NoiseMakerSoundRadius,
+}
+
+option LSMRR.RemoteControllerV1Range = {
+    type = integer, min = 0, max = 1000, default = 50, page = LSMRR, translation = LSMRR_RemoteControllerV1Range,
+}
+
+option LSMRR.RemoteControllerV2Range = {
+    type = integer, min = 0, max = 1000, default = 75, page = LSMRR, translation = LSMRR_RemoteControllerV2Range,
+}
+
+option LSMRR.RemoteControllerV3Range = {
+    type = integer, min = 0, max = 1000, default = 100, page = LSMRR, translation = LSMRR_RemoteControllerV3Range,
+}
