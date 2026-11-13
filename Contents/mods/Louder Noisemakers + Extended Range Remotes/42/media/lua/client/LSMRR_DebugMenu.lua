@@ -6,7 +6,7 @@ local function addLSMRRItems()
             playerObj:LevelPerk(Perks.Electricity)
         end
         local knownRecipes = playerObj:getKnownRecipes()
-        knownRecipes:add("Make Extended Range Remote Controller")
+        knownRecipes:add("Extend Range of Remote Controller")
         knownRecipes:add("Make Alarm Clock Louder")
         knownRecipes:add("Make Noise Maker Louder")
     end
