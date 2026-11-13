@@ -24,7 +24,8 @@ module LSMRR_Recipes {
         Time          = 20,
         Tags          = InHandCraft,
         category      = Electrical,
-        AutoLearnAny  = Electricity:1,
+        SkillRequired = Electricity:2,
+        AutoLearnAny  = Electricity:4,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs { 
             item 1 [Base.AlarmClock2] mode:keep flags[Prop2],
@@ -38,8 +39,8 @@ module LSMRR_Recipes {
         Time          = 50,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
-        SkillRequired = Electricity:2,
-        AutoLearnAny  = Electricity:4,
+        SkillRequired = Electricity:3,
+        AutoLearnAny  = Electricity:6,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeLouder,
         inputs 
         {
@@ -48,15 +49,15 @@ module LSMRR_Recipes {
         }
     }
 
-    craftRecipe Make Extended Range Remote Controller
+    craftRecipe Extend Range of Remote Controller
     {
         timedAction   = MakingElectrical,
         Time          = 100,
         NeedToBeLearn = True,
-        SkillRequired = Electricity:2,
         Tags          = AnySurfaceCraft,
         category      = Electrical,
-        AutoLearnAny  = Electricity:4,
+        SkillRequired = Electricity:3,
+        AutoLearnAny  = Electricity:6,
         xpAward       = Electricity:10,
         OnCreate      = LSMRR.OnCreate.LSMRR_MakeRangeHigher,
         inputs 
